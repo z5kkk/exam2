@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>养护工区在线考试系统</title>
+<style>
+/* ============================================================
+   在线考试系统 · iOS 26 液态玻璃设计令牌
+   Design Tokens CSS — 基于 Apple 设计系统深度定制
+   生成时间：2026-07-15 | 设计系统专家：彩格调（Cai）
+   ============================================================ */
+
+/* ============================================================
+   1. 深色模式色彩（默认模式）
+   ============================================================ */
+:root,
+
+
+/* ============================================================
+   2. 浅色模式色彩
+   ============================================================ */
+[data-theme="light"] {
+
+  /* --- 背景色系 --- */
+  --bg-base: #F5F7FA;
+  --bg-elevated: #EDF1F7;
+  --bg-surface: #FFFFFF;
+  --bg-input: #F1F5F9;
+
+  /* --- 文本色系 --- */
+  --text-primary: #1E293B;
+  --text-secondary: #64748B;
+  --text-tertiary: #94A3B8;
+  --text-inverse: #FFFFFF;
+
+  /* --- 玻璃层颜色 --- */
+  --glass-bg-1: rgba(255, 255, 255, 0.70);   /* 一级：导航栏 */
+  --glass-bg-2: rgba(255, 255, 255, 0.80);   /* 二级：弹窗 */
+  --glass-bg-3: rgba(255, 255, 255, 0.55);   /* 三级：卡片 */
+  --glass-border: rgba(255, 255, 255, 0.60);
+  --glass-highlight: rgba(255, 255, 255, 0.90);
+
+  /* --- 玻璃阴影 --- */
+  --shadow-raised: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-floating: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-overlay: 0 12px 32px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --shadow-accent-glow: 0 4px 14px rgba(91, 124, 250, 0.25), 0 0 0 1px rgba(91, 124, 250, 0.08);
+
+  /* --- 边框色 --- */
+  --border-default: #E2E8F0;
+  --border-subtle: #F1F5F9;
+  --border-strong: #CBD5E1;
+
+  /* --- 语义色背景 --- */
+  --color-success-bg: rgba(16, 185, 129, 0.10);
+  --color-warning-bg: rgba(245, 158, 11, 0.10);
+  --color-danger-bg: rgba(239, 68, 68, 0.10);
+  --color-info-bg: rgba(59, 130, 246, 0.10);
+
+  /* --- 遮罩层 --- */
+  --modal-backdrop: rgba(15, 23, 42, 0.30);
+  --drawer-backdrop: rgba(15, 23, 42, 0.35);
+}
+
+/* ============================================================
+   3. 强调色（双模式通用）
+   ============================================================ */
+:root {
+  --accent-blue: #5B7CFA;
+  --accent-blue-hover: #4A6AE8;
+  --accent-blue-active: #3D5BD4;
+  --accent-purple: #8B5CF6;
+  --accent-purple-hover: #7C4AEF;
+  --accent-cyan: #06B6D4;
+  --accent-gradient: linear-gradient(135deg, #5B7CFA 0%, #8B5CF6 100%);
+  --accent-gradient-cyan: linear-gradient(135deg, #5B7CFA 0%, #06B6D4 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #4A6AE8 0%, #7C4AEF 100%);
+
+  /* --- 语义色 --- */
+  --color-success: #34D399;
+  --color-success-strong: #10B981;
+  --color-warning: #FBBF24;
+  --color-warning-strong: #F59E0B;
+  --color-danger: #F87171;
+  --color-danger-strong: #EF4444;
+  --color-info: #60A5FA;
+  --color-info-strong: #3B82F6;
+
+  /* --- 倒计时专用色阶 --- */
+  --timer-safe: #34D399;
+  --timer-caution: #FBBF24;
+  --timer-danger: #F87171;
+  --timer-danger-pulse: #EF4444;
+
+  /* --- 中性色阶 --- */
+  --neutral-50: #F8FAFC;
+  --neutral-100: #F1F5F9;
+  --neutral-200: #E2E8F0;
+  --neutral-300: #CBD5E1;
+  --neutral-400: #94A3B8;
+  --neutral-500: #64748B;
+  --neutral-600: #475569;
+  --neutral-700: #334155;
+  --neutral-800: #1E293B;
+  --neutral-900: #0F172A;
+}
+
+/* ============================================================
+   4. 动态背景渐变球
+   ============================================================ */
+:root {
+  --mesh-orb-blue: radial-gradient(circle, rgba(91, 124, 250, 0.35) 0%, transparent 70%);
+  --mesh-orb-purple: radial-gradient(circle, rgba(139, 92, 246, 0.30) 0%, transparent 70%);
+  --mesh-orb-cyan: radial-gradient(circle, rgba(6, 182, 212, 0.25) 0%, transparent 70%);
+}
+
+/* ============================================================
+   5. 排版系统
+   ============================================================ */
+:root {
+  /* --- 字体栈 --- */
+  --font-heading: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC',
+                  'Helvetica Neue', 'Microsoft YaHei', sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC',
+               'Helvetica Neue', 'Microsoft YaHei', sans-serif;
+  --font-mono: 'SF Mono', 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  --font-numeric: 'SF Pro Display', -apple-system, 'Helvetica Neue', sans-serif;
+
+  /* --- 字重 --- */
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-heavy: 800;
+
+  /* --- 字号 --- */
+  --text-display: 3rem;       /* 48px */
+  --text-h1: 2.25rem;         /* 36px */
+  --text-h2: 1.75rem;         /* 28px */
+  --text-h3: 1.375rem;        /* 22px */
+  --text-h4: 1.125rem;        /* 18px */
+  --text-body-l: 1.0625rem;   /* 17px — 移动端正文 */
+  --text-body: 1rem;          /* 16px */
+  --text-body-s: 0.9375rem;   /* 15px */
+  --text-small: 0.875rem;     /* 14px */
+  --text-micro: 0.75rem;      /* 12px */
+  --text-timer: 2.5rem;       /* 40px */
+  --text-score-l: 4rem;       /* 64px */
+
+  /* --- 行高 --- */
+  --leading-tight: 1.1;
+  --leading-snug: 1.3;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.6;
+  --leading-loose: 1.8;
+
+  /* --- 字间距 --- */
+  --tracking-tight: -0.02em;
+  --tracking-snug: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.02em;
+  --tracking-wider: 0.05em;
+}
+
+/* ============================================================
+   6. 间距系统
+   ============================================================ */
+:root {
+  --space-3xs: 2px;
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 20px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 40px;
+  --space-4xl: 48px;
+  --space-5xl: 64px;
+}
+
+/* ============================================================
+   7. 圆角系统
+   ============================================================ */
+:root {
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+  --radius-full: 9999px;
+}
+
+/* ============================================================
+   8. 毛玻璃效果系统
+   ============================================================ */
+:root {
+  /* --- Blur 层级 --- */
+  --blur-sm: 12px;
+  --blur-md: 20px;
+  --blur-lg: 30px;
+  --blur-xl: 40px;
+  --blur-2xl: 60px;
+
+  /* --- Saturate 层级 --- */
+  --saturate-normal: 150%;
+  --saturate-high: 180%;
+  --saturate-max: 200%;
+
+  /* --- 复合玻璃效果快捷变量 --- */
+  --glass-nav: backdrop-filter: blur(40px) saturate(180%);
+  --glass-modal: backdrop-filter: blur(40px) saturate(200%);
+  --glass-card: backdrop-filter: blur(24px) saturate(150%);
+  --glass-dropdown: backdrop-filter: blur(30px) saturate(180%);
+  --glass-toast: backdrop-filter: blur(40px) saturate(200%);
+}
+
+/* ============================================================
+   9. Z-index 层级
+   ============================================================ */
+:root {
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 410;
+  --z-toast: 500;
+  --z-tooltip: 550;
+}
+
+/* ============================================================
+   10. 动画系统
+   ============================================================ */
+:root {
+  /* --- 时长 --- */
+  --duration-instant: 100ms;
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --duration-slower: 600ms;
+  --duration-ambient: 8000ms;
+
+  /* --- 缓动函数 --- */
+  --ease-linear: linear;
+  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-in: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  --ease-in-out: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   11. 响应式断点
+   ============================================================ */
+:root {
+  --bp-mobile: 640px;
+  --bp-tablet: 768px;
+  --bp-desktop: 1024px;
+  --bp-wide: 1280px;
+}
+
+/* ============================================================
+   12. 布局系统
+   ============================================================ */
+:root {
+  --container-max: 1280px;
+  --sidebar-width: 240px;
+  --sidebar-width-collapsed: 64px;
+  --topbar-height: 64px;
+  --topbar-height-mobile: 56px;
+  --tabbar-height: 64px;
+  --content-padding: 24px;
+  --content-padding-mobile: 16px;
+  --content-bottom-safe: 80px;
+}
+
+/* ============================================================
+   13. 关键动画 Keyframes
+   ============================================================ */
+
+/* 背景渐变球流动 */
+@keyframes mesh-gradient-flow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30%, -20%) scale(1.1); }
+  66% { transform: translate(-20%, 30%) scale(0.9); }
+}
+
+/* 骨架屏扫光 */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* 倒计时脉冲 */
+@keyframes timer-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+/* 倒计时紧急脉冲 */
+@keyframes timer-critical {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.08); }
+}
+
+/* 弹窗进入 */
+@keyframes modal-enter {
+  0% { opacity: 0; transform: scale(0.92) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* 弹窗退出 */
+@keyframes modal-exit {
+  0% { opacity: 1; transform: scale(1) translateY(0); }
+  100% { opacity: 0; transform: scale(0.95) translateY(10px); }
+}
+
+/* Toast 滑入 */
+@keyframes toast-slide-in {
+  0% { opacity: 0; transform: translateX(100%); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Toast 滑出 */
+@keyframes toast-slide-out {
+  0% { opacity: 1; transform: translateX(0); }
+  100% { opacity: 0; transform: translateX(100%); }
+}
+
+/* 页面转场 */
+@keyframes page-transition {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* 底部抽屉滑入（移动端弹窗） */
+@keyframes drawer-slide-up {
+  0% { opacity: 0; transform: translateY(100%); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* 淡入 */
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* 淡出 */
+@keyframes fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* 下拉展开 */
+@keyframes dropdown-expand {
+  0% { opacity: 0; transform: scaleY(0.9) translateY(-4px); transform-origin: top; }
+  100% { opacity: 1; transform: scaleY(1) translateY(0); transform-origin: top; }
+}
+
+/* ============================================================
+   14. 通用工具类
+   ============================================================ */
+
+/* 玻璃材质 — 导航栏 */
+.glass-nav {
+  background: var(--glass-bg-1);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid var(--glass-border);
+}
+
+/* 玻璃材质 — 弹窗 */
+.glass-modal {
+  background: var(--glass-bg-2);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-overlay);
+}
+
+/* 玻璃材质 — 卡片 */
+.glass-card {
+  position: relative;
+  background: var(--glass-bg-3);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+  overflow: hidden;
+}
+
+/* 玻璃顶部高光 */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
+  pointer-events: none;
+}
+
+/* 玻璃材质 — 下拉菜单 */
+.glass-dropdown {
+  background: var(--glass-bg-2);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-floating);
+}
+
+/* 动态渐变背景容器 */
+.mesh-gradient-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--bg-base);
+}
+
+.mesh-gradient-bg::before,
+.mesh-gradient-bg::after,
+.mesh-gradient-bg > .orb {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.7;
+}
+
+.mesh-gradient-bg::before {
+  background: var(--mesh-orb-blue);
+  top: -200px;
+  left: -100px;
+  animation: mesh-gradient-flow var(--duration-ambient) var(--ease-in-out) infinite;
+}
+
+.mesh-gradient-bg::after {
+  background: var(--mesh-orb-purple);
+  bottom: -200px;
+  right: -100px;
+  animation: mesh-gradient-flow var(--duration-ambient) var(--ease-in-out) infinite reverse;
+  animation-delay: -3s;
+}
+
+.mesh-gradient-bg > .orb {
+  background: var(--mesh-orb-cyan);
+  top: 40%;
+  left: 50%;
+  animation: mesh-gradient-flow var(--duration-ambient) var(--ease-in-out) infinite;
+  animation-delay: -5s;
+}
+
+/* 骨架屏毛玻璃 */
+.skeleton-glass {
+  background: var(--glass-bg-3);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+}
+
+/* 等宽数字 */
+.numeric {
+  font-family: var(--font-numeric);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   15. 无障碍与降级
+   ============================================================ */
+
+/* 尊重用户的减少动画设置 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .mesh-gradient-bg::before,
+  .mesh-gradient-bg::after,
+  .mesh-gradient-bg > .orb {
+    animation: none !important;
+  }
+}
+
+/* backdrop-filter 不支持时的降级 */
+@supports not (backdrop-filter: blur(20px)) {
+  .glass-nav { background: var(--bg-elevated); }
+  .glass-modal { background: var(--bg-surface); }
+  .glass-card { background: var(--bg-surface); }
+  .glass-dropdown { background: var(--bg-surface); }
+}
+
+/* 移动端低端设备降级 */
+@media (max-width: 640px) and (prefers-reduced-motion: reduce) {
+  .glass-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--bg-surface);
+  }
+}
+
+/* 聚焦可见性 */
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+/* ============================================================
+   16. v2 新增设计令牌 — 答题卡 / 登录注册 / 分数分析 / 发布向导
+   （增量扩展，不修改 v1 任何变量）
+   ============================================================ */
+
+/* 16.1 主题相关变量（深色模式 / 浅色模式分别定义） */
+:root,
+
+
+[data-theme="light"] {
+
+  /* --- 下拉选择器（玻璃质感）背景 --- */
+  --select-bg: rgba(255, 255, 255, 0.80);
+  --select-option-selected-bg: rgba(91, 124, 250, 0.14);
+  --select-menu-border: rgba(255, 255, 255, 0.60);
+
+  /* --- 答题卡：面板 / 抽屉 / 分组 / 统计条 / 单元格背景 --- */
+  --answer-card-panel-bg: rgba(255, 255, 255, 0.60);
+  --answer-card-panel-border: rgba(255, 255, 255, 0.60);
+  --answer-card-drawer-bg: rgba(255, 255, 255, 0.94);
+  --answer-card-drawer-border: rgba(255, 255, 255, 0.70);
+  --answer-card-group-bg: rgba(15, 23, 42, 0.03);
+  --answer-card-group-header-bg: rgba(15, 23, 42, 0.05);
+  --answer-card-group-header-text: rgba(15, 23, 42, 0.55);
+  --answer-card-stats-bg: rgba(15, 23, 42, 0.04);
+  --answer-card-stats-border: rgba(15, 23, 42, 0.08);
+  --answer-card-cell-unanswered-bg: rgba(15, 23, 42, 0.03);
+  --answer-card-cell-unanswered-border: rgba(15, 23, 42, 0.16);
+  --answer-card-current-border: rgba(15, 23, 42, 0.55);
+  --answer-card-current-glow: 0 0 0 2px rgba(91, 124, 250, 0.30), 0 4px 14px rgba(91, 124, 250, 0.22);
+
+  /* --- 筛选栏背景 --- */
+  --filter-bar-bg: rgba(255, 255, 255, 0.55);
+  --filter-bar-border: rgba(255, 255, 255, 0.60);
+
+  /* --- 导出按钮背景 --- */
+  --export-btn-bg: rgba(255, 255, 255, 0.70);
+  --export-btn-border: rgba(255, 255, 255, 0.60);
+  --export-btn-hover-bg: rgba(6, 182, 212, 0.12);
+
+  /* --- 发布向导：行 / 步骤 / 连接线 / 侧导航背景 --- */
+  --wizard-row-bg: rgba(255, 255, 255, 0.55);
+  --wizard-row-border: rgba(255, 255, 255, 0.60);
+  --wizard-step-bg: rgba(255, 255, 255, 0.70);
+  --wizard-step-border: rgba(15, 23, 42, 0.16);
+  --wizard-connector-bg: rgba(15, 23, 42, 0.16);
+  --wizard-nav-bg: rgba(255, 255, 255, 0.45);
+}
+
+/* 16.2 主题无关变量（双模式通用，复用 v1 强调色与语义色） */
+:root {
+
+  /* ===== 下拉选择器（玻璃质感） ===== */
+  --select-height: 48px;
+  --select-height-mobile: 52px;
+  --select-radius: var(--radius-md);
+  --select-blur: 30px;
+  --select-saturate: 180%;
+  --select-trigger-icon: var(--text-secondary);
+  --select-option-hover: var(--color-info-bg);
+  --select-text: var(--text-primary);
+  --select-font-size: var(--text-body);
+
+  /* ===== 表单校验态 ===== */
+  --field-error-border: var(--color-danger);
+  --field-error-shadow: 0 0 0 3px var(--color-danger-bg);
+  --field-error-text: var(--color-danger);
+  --field-error-size: var(--text-small);
+  --field-error-margin: 6px;
+  --field-valid-border: var(--color-success);
+  --field-valid-shadow: 0 0 0 3px var(--color-success-bg);
+  --field-valid-text: var(--color-success);
+
+  /* ===== 密码强度提示 ===== */
+  --pw-strength-track-bg: var(--bg-input);
+  --pw-strength-height: 6px;
+  --pw-strength-radius: var(--radius-full);
+  --pw-strength-gap: 4px;
+  --pw-strength-weak: var(--color-danger);
+  --pw-strength-fair: var(--color-warning);
+  --pw-strength-good: var(--accent-cyan);
+  --pw-strength-strong: var(--color-success);
+  --pw-strength-text-size: var(--text-micro);
+  --pw-strength-label-size: var(--text-micro);
+
+  /* ===== 答题卡：四态（主题无关，复用强调色/语义色） ===== */
+  --answer-card-answered-bg: var(--accent-blue);          /* 已答：实心填充强调色 */
+  --answer-card-answered-text: #FFFFFF;
+  --answer-card-answered-hover: var(--accent-blue-hover);
+  --answer-card-unanswered-text: var(--text-secondary);   /* 未答：透明描边 + 灰字 */
+  --answer-card-marked-bg: rgba(91, 124, 250, 0.12);      /* 标记：强调色描边 + 星标 */
+  --answer-card-marked-border: var(--accent-blue);
+  --answer-card-marked-text: var(--accent-blue);
+  --answer-card-marked-star: var(--color-warning);         /* 星标用琥珀色提升辨识度 */
+  --answer-card-current-text: var(--text-primary);         /* 当前题：高亮边框 + 缩放 */
+  --answer-card-current-scale: 1.12;
+
+  /* ===== 答题卡：尺寸与布局 ===== */
+  --answer-card-cell-size: 40px;
+  --answer-card-cell-size-mobile: 36px;
+  --answer-card-cell-gap: 8px;
+  --answer-card-cell-radius: var(--radius-sm);
+  --answer-card-cell-font-size: var(--text-small);
+  --answer-card-stats-height: 56px;
+  --answer-card-stats-gap: 16px;
+  --answer-card-stats-text: var(--text-secondary);
+  --answer-card-stats-value: var(--text-primary);
+  --answer-card-stats-value-size: var(--text-h4);
+  --answer-card-group-gap: 16px;
+  --answer-card-group-label-height: 32px;
+  --answer-card-group-label-size: var(--text-micro);
+  --answer-card-group-count: 20;            /* 每 20 题一组（JS 参考常量） */
+  --answer-card-panel-width: 280px;
+  --answer-card-panel-padding: 20px;
+  --answer-card-drawer-height: 70vh;
+  --answer-card-drawer-radius: var(--radius-2xl);
+  --answer-card-drawer-handle: rgba(255, 255, 255, 0.30);
+
+  /* ===== 维度切换 Tab（月/季/年 分段控件） ===== */
+  --tab-segmented-bg: var(--glass-bg-3);
+  --tab-segmented-border: var(--glass-border);
+  --tab-segmented-radius: var(--radius-full);
+  --tab-segmented-padding: 4px;
+  --tab-indicator-bg: var(--accent-gradient);
+  --tab-indicator-radius: var(--radius-full);
+  --tab-height: 40px;
+  --tab-font-size: var(--text-small);
+  --tab-gap: 4px;
+  --tab-inactive-text: var(--text-secondary);
+  --tab-active-text: #FFFFFF;
+
+  /* ===== 导出按钮（区别于普通按钮） ===== */
+  --export-btn-text: var(--text-primary);
+  --export-btn-icon: var(--accent-cyan);
+  --export-btn-radius: var(--radius-lg);
+  --export-btn-height: 44px;
+  --export-btn-h-padding: 18px;
+  --export-btn-font-size: var(--text-body-s);
+
+  /* ===== 筛选栏组合布局 ===== */
+  --filter-bar-gap: 12px;
+  --filter-bar-padding: 16px;
+  --filter-bar-radius: var(--radius-xl);
+  --filter-group-gap: 12px;
+  --filter-label-size: var(--text-micro);
+  --filter-label-color: var(--text-tertiary);
+  --filter-select-width: 180px;
+
+  /* ===== 发布向导：步骤指示器 ===== */
+  --wizard-step-size: 36px;
+  --wizard-step-radius: var(--radius-full);
+  --wizard-step-text-size: var(--text-small);
+  --wizard-step-active-bg: var(--accent-gradient);
+  --wizard-step-active-text: #FFFFFF;
+  --wizard-step-done-bg: var(--color-success);
+  --wizard-step-done-text: #FFFFFF;
+  --wizard-step-text: var(--text-secondary);
+  --wizard-step-label-size: var(--text-small);
+  --wizard-step-label-active: var(--text-primary);
+  --wizard-step-label-color: var(--text-tertiary);
+  --wizard-connector-active-bg: var(--accent-blue);
+  --wizard-connector-height: 2px;
+  --wizard-nav-gap: 16px;
+  --wizard-nav-width: 260px;
+  --wizard-content-padding: 32px;
+
+  /* ===== 发布向导：题型配置行 / 分值行 ===== */
+  --wizard-row-gap: 12px;
+  --wizard-row-padding: 14px;
+  --wizard-row-radius: var(--radius-md);
+  --wizard-row-label-size: var(--text-body-s);
+  --wizard-row-sub-size: var(--text-micro);
+  --wizard-row-sub-color: var(--text-tertiary);
+  --wizard-input-width: 96px;
+  --wizard-input-height: 44px;
+  --wizard-input-radius: var(--radius-sm);
+  --wizard-preview-text: var(--text-primary);
+  --wizard-preview-size: var(--text-body-s);
+
+  /* ===== 题型四色（单选蓝 / 多选紫 / 判断绿 / 简答橙） ===== */
+  --exam-type-single: var(--accent-blue);
+  --exam-type-multiple: var(--accent-purple);
+  --exam-type-judge: var(--color-success);
+  --exam-type-essay: var(--color-warning);
+  --exam-type-single-bg: rgba(91, 124, 250, 0.15);
+  --exam-type-multiple-bg: rgba(139, 92, 246, 0.15);
+  --exam-type-judge-bg: rgba(52, 211, 153, 0.15);
+  --exam-type-essay-bg: rgba(251, 191, 36, 0.15);
+  --exam-type-single-text: var(--accent-blue);
+  --exam-type-multiple-text: var(--accent-purple);
+  --exam-type-judge-text: var(--color-success-strong);
+  --exam-type-essay-text: var(--color-warning-strong);
+  --exam-type-tag-radius: var(--radius-full);
+  --exam-type-tag-padding: 4px 12px;
+  --exam-type-tag-size: var(--text-micro);
+}
+
+/* 16.3 组件样式类 — v2 新增（基于上述令牌，沿用 v1 玻璃/阴影规范） */
+
+/* ---------- 下拉选择器（玻璃质感） ---------- */
+.select-field { position: relative; width: 100%; }
+.select-field__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  width: 100%;
+  height: var(--select-height);
+  padding: 0 16px;
+  font-family: var(--font-body);
+  font-size: var(--select-font-size);
+  color: var(--select-text);
+  background: var(--select-bg);
+  border: 1px solid var(--select-menu-border);
+  border-radius: var(--select-radius);
+  backdrop-filter: blur(var(--select-blur)) saturate(var(--select-saturate));
+  -webkit-backdrop-filter: blur(var(--select-blur)) saturate(var(--select-saturate));
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
+}
+.select-field__trigger:hover { border-color: var(--border-strong); }
+.select-field__trigger:focus-visible {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(91, 124, 250, 0.15);
+}
+.select-field__icon { color: var(--select-trigger-icon); transition: transform var(--duration-fast) var(--ease-out); }
+.select-field.is-open .select-field__icon { transform: rotate(180deg); }
+.select-field__menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: var(--z-dropdown);
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 6px;
+  background: var(--select-bg);
+  border: 1px solid var(--select-menu-border);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(var(--select-blur)) saturate(var(--select-saturate));
+  -webkit-backdrop-filter: blur(var(--select-blur)) saturate(var(--select-saturate));
+  box-shadow: var(--shadow-floating);
+  animation: dropdown-expand var(--duration-normal) var(--ease-spring);
+}
+.select-field__option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-body-s);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out);
+}
+.select-field__option:hover { background: var(--select-option-hover); }
+.select-field__option.is-selected { background: var(--select-option-selected-bg); color: var(--accent-blue); }
+
+/* ---------- 表单校验态 ---------- */
+.input--error {
+  border-color: var(--field-error-border) !important;
+  box-shadow: var(--field-error-shadow) !important;
+}
+.input--valid {
+  border-color: var(--field-valid-border) !important;
+  box-shadow: var(--field-valid-shadow) !important;
+}
+.field-error {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: var(--field-error-margin);
+  font-size: var(--field-error-size);
+  color: var(--field-error-text);
+}
+.field-hint {
+  margin-top: var(--field-error-margin);
+  font-size: var(--field-error-size);
+  color: var(--text-tertiary);
+}
+
+/* ---------- 密码强度提示（分段条 + 文案） ---------- */
+.pw-strength { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.pw-strength__bars { display: flex; gap: var(--pw-strength-gap); }
+.pw-strength__segment {
+  flex: 1;
+  height: var(--pw-strength-height);
+  border-radius: var(--pw-strength-radius);
+  background: var(--pw-strength-track-bg);
+  transition: background var(--duration-normal) var(--ease-smooth);
+}
+.pw-strength[data-level="1"] .pw-strength__segment:nth-child(-n+1) { background: var(--pw-strength-weak); }
+.pw-strength[data-level="2"] .pw-strength__segment:nth-child(-n+2) { background: var(--pw-strength-fair); }
+.pw-strength[data-level="3"] .pw-strength__segment:nth-child(-n+3) { background: var(--pw-strength-good); }
+.pw-strength[data-level="4"] .pw-strength__segment:nth-child(-n+4) { background: var(--pw-strength-strong); }
+.pw-strength__label { font-size: var(--pw-strength-label-size); color: var(--text-tertiary); }
+.pw-strength[data-level="1"] .pw-strength__label { color: var(--pw-strength-weak); }
+.pw-strength[data-level="2"] .pw-strength__label { color: var(--pw-strength-fair); }
+.pw-strength[data-level="3"] .pw-strength__label { color: var(--pw-strength-good); }
+.pw-strength[data-level="4"] .pw-strength__label { color: var(--pw-strength-strong); }
+
+/* ---------- 答题卡（重设计：PC 侧栏 / 移动抽屉 / 四态） ---------- */
+.answer-card-panel {
+  position: sticky;
+  top: calc(var(--topbar-height) + 16px);
+  width: var(--answer-card-panel-width);
+  max-height: calc(100vh - var(--topbar-height) - 32px);
+  display: flex;
+  flex-direction: column;
+  padding: var(--answer-card-panel-padding);
+  background: var(--answer-card-panel-bg);
+  border: 1px solid var(--answer-card-panel-border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  box-shadow: var(--shadow-glass);
+  overflow: hidden;
+}
+.answer-card-drawer {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: var(--z-modal);
+  height: var(--answer-card-drawer-height);
+  display: flex;
+  flex-direction: column;
+  background: var(--answer-card-drawer-bg);
+  border-top: 1px solid var(--answer-card-drawer-border);
+  border-radius: var(--answer-card-drawer-radius) var(--answer-card-drawer-radius) 0 0;
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  box-shadow: var(--shadow-overlay);
+  transform: translateY(100%);
+  transition: transform var(--duration-slow) var(--ease-spring);
+}
+.answer-card-drawer.is-open { transform: translateY(0); }
+.answer-card-drawer__handle {
+  width: 40px; height: 4px;
+  margin: 8px auto;
+  border-radius: var(--radius-full);
+  background: var(--answer-card-drawer-handle);
+}
+.answer-card-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--answer-card-stats-gap);
+  min-height: var(--answer-card-stats-height);
+  padding: 0 var(--space-md);
+  margin-bottom: var(--space-md);
+  background: var(--answer-card-stats-bg);
+  border: 1px solid var(--answer-card-stats-border);
+  border-radius: var(--radius-lg);
+}
+.answer-card-stat { display: flex; flex-direction: column; align-items: center; flex: 1; }
+.answer-card-stat__value {
+  font-family: var(--font-numeric);
+  font-size: var(--answer-card-stats-value-size);
+  font-weight: var(--font-bold);
+  color: var(--answer-card-stats-value);
+}
+.answer-card-stat__label { font-size: var(--text-micro); color: var(--answer-card-stats-text); }
+.answer-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--answer-card-cell-size));
+  gap: var(--answer-card-cell-gap);
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.answer-card-group { margin-bottom: var(--answer-card-group-gap); }
+.answer-card-group__label {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  height: var(--answer-card-group-label-height);
+  font-size: var(--answer-card-group-label-size);
+  font-weight: var(--font-semibold);
+  color: var(--answer-card-group-header-text);
+  background: var(--answer-card-group-header-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1;
+}
+.answer-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--answer-card-cell-size);
+  height: var(--answer-card-cell-size);
+  font-size: var(--answer-card-cell-font-size);
+  font-weight: var(--font-medium);
+  font-variant-numeric: tabular-nums;
+  border-radius: var(--answer-card-cell-radius);
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-spring),
+              background var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
+}
+.answer-cell--unanswered {
+  background: var(--answer-card-cell-unanswered-bg);
+  border: 1px solid var(--answer-card-cell-unanswered-border);
+  color: var(--answer-card-unanswered-text);
+}
+.answer-cell--answered {
+  background: var(--answer-card-answered-bg);
+  border: 1px solid transparent;
+  color: var(--answer-card-answered-text);
+}
+.answer-cell--answered:hover { background: var(--answer-card-answered-hover); }
+.answer-cell--marked {
+  background: var(--answer-card-marked-bg);
+  border: 2px solid var(--answer-card-marked-border);
+  color: var(--answer-card-marked-text);
+}
+.answer-cell--marked .answer-cell__star {
+  position: absolute;
+  top: -4px; right: -4px;
+  width: 14px; height: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+  color: var(--answer-card-marked-star);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+.answer-cell--current {
+  background: var(--answer-card-cell-unanswered-bg);
+  border: 2px solid var(--answer-card-current-border);
+  color: var(--answer-card-current-text);
+  transform: scale(var(--answer-card-current-scale));
+  box-shadow: var(--answer-card-current-glow);
+  z-index: 2;
+}
+.answer-cell:hover { transform: scale(1.06); }
+.answer-cell--current:hover { transform: scale(var(--answer-card-current-scale)); }
+
+/* ---------- 维度切换 Tab（月/季/年 分段控件） ---------- */
+.dim-tabs {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tab-gap);
+  padding: var(--tab-segmented-padding);
+  background: var(--tab-segmented-bg);
+  border: 1px solid var(--tab-segmented-border);
+  border-radius: var(--tab-segmented-radius);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+.dim-tabs__btn {
+  position: relative;
+  z-index: 1;
+  min-width: 64px;
+  height: calc(var(--tab-height) - var(--tab-segmented-padding) * 2);
+  padding: 0 18px;
+  border: none;
+  background: transparent;
+  border-radius: var(--tab-indicator-radius);
+  font-size: var(--tab-font-size);
+  font-weight: var(--font-medium);
+  color: var(--tab-inactive-text);
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+.dim-tabs__btn.is-active { color: var(--tab-active-text); }
+.dim-tabs__indicator {
+  position: absolute;
+  z-index: 0;
+  top: var(--tab-segmented-padding);
+  bottom: var(--tab-segmented-padding);
+  border-radius: var(--tab-indicator-radius);
+  background: var(--tab-indicator-bg);
+  box-shadow: var(--shadow-accent-glow);
+  transition: transform var(--duration-normal) var(--ease-spring),
+              width var(--duration-normal) var(--ease-spring);
+}
+
+/* ---------- 导出按钮（区别于普通按钮） ---------- */
+.btn-export {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  height: var(--export-btn-height);
+  padding: 0 var(--export-btn-h-padding);
+  font-family: var(--font-body);
+  font-size: var(--export-btn-font-size);
+  font-weight: var(--font-semibold);
+  color: var(--export-btn-text);
+  background: var(--export-btn-bg);
+  border: 1px solid var(--export-btn-border);
+  border-radius: var(--export-btn-radius);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-spring);
+}
+.btn-export:hover { background: var(--export-btn-hover-bg); transform: translateY(-1px); }
+.btn-export:active { transform: translateY(0); }
+.btn-export__icon { color: var(--export-btn-icon); display: inline-flex; }
+.btn-export--primary {
+  background: var(--accent-gradient);
+  border-color: transparent;
+  color: #FFFFFF;
+}
+.btn-export--primary .btn-export__icon { color: #FFFFFF; }
+
+/* ---------- 筛选栏组合布局 ---------- */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--filter-bar-gap);
+  padding: var(--filter-bar-padding);
+  background: var(--filter-bar-bg);
+  border: 1px solid var(--filter-bar-border);
+  border-radius: var(--filter-bar-radius);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+}
+.filter-bar__group { display: flex; flex-direction: column; gap: 6px; }
+.filter-bar__label {
+  font-size: var(--filter-label-size);
+  font-weight: var(--font-medium);
+  color: var(--filter-label-color);
+  letter-spacing: var(--tracking-wide);
+}
+.filter-bar__control { width: var(--filter-select-width); }
+
+/* ---------- 发布向导：步骤指示器 ---------- */
+.wizard-steps { display: flex; align-items: flex-start; }
+.wizard-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  flex: 0 0 auto;
+  width: 88px;
+  text-align: center;
+}
+.wizard-step__dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--wizard-step-size);
+  height: var(--wizard-step-size);
+  border-radius: var(--wizard-step-radius);
+  font-size: var(--wizard-step-text-size);
+  font-weight: var(--font-semibold);
+  color: var(--wizard-step-text);
+  background: var(--wizard-step-bg);
+  border: 1px solid var(--wizard-step-border);
+  transition: all var(--duration-normal) var(--ease-spring);
+  z-index: 1;
+}
+.wizard-step__label {
+  font-size: var(--wizard-step-label-size);
+  color: var(--wizard-step-label-color);
+}
+.wizard-step--active .wizard-step__dot {
+  background: var(--wizard-step-active-bg);
+  border-color: transparent;
+  color: var(--wizard-step-active-text);
+  box-shadow: var(--shadow-accent-glow);
+}
+.wizard-step--active .wizard-step__label { color: var(--wizard-step-label-active); font-weight: var(--font-semibold); }
+.wizard-step--done .wizard-step__dot {
+  background: var(--wizard-step-done-bg);
+  border-color: transparent;
+  color: var(--wizard-step-done-text);
+}
+.wizard-step--done .wizard-step__label { color: var(--wizard-step-label-active); }
+.wizard-connector {
+  flex: 1 1 auto;
+  height: var(--wizard-connector-height);
+  margin: calc(var(--wizard-step-size) / 2) var(--space-sm) 0;
+  background: var(--wizard-connector-bg);
+  border-radius: var(--radius-full);
+  transition: background var(--duration-normal) var(--ease-smooth);
+}
+.wizard-connector.is-active { background: var(--wizard-connector-active-bg); }
+
+/* ---------- 发布向导：题型数量 / 分值配置行 ---------- */
+.wizard-row {
+  display: flex;
+  align-items: center;
+  gap: var(--wizard-row-gap);
+  padding: var(--wizard-row-padding);
+  background: var(--wizard-row-bg);
+  border: 1px solid var(--wizard-row-border);
+  border-radius: var(--wizard-row-radius);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+}
+.wizard-row + .wizard-row { margin-top: var(--wizard-row-gap); }
+.wizard-row__tag { flex: 0 0 auto; }
+.wizard-row__body { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.wizard-row__label { font-size: var(--wizard-row-label-size); font-weight: var(--font-medium); color: var(--text-primary); }
+.wizard-row__hint { font-size: var(--wizard-row-sub-size); color: var(--wizard-row-sub-color); }
+.wizard-row__input {
+  width: var(--wizard-input-width);
+  height: var(--wizard-input-height);
+  padding: 0 12px;
+  text-align: center;
+  font-family: var(--font-numeric);
+  font-size: var(--text-body);
+  color: var(--text-primary);
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  border-radius: var(--wizard-input-radius);
+  transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+}
+.wizard-row__input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(91, 124, 250, 0.15);
+}
+.wizard-row__input.input--error { border-color: var(--field-error-border); box-shadow: var(--field-error-shadow); }
+.wizard-row__preview {
+  flex: 0 0 auto;
+  min-width: 72px;
+  text-align: right;
+  font-size: var(--wizard-preview-size);
+  color: var(--wizard-preview-text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 题型四色标签 ---------- */
+.exam-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: var(--exam-type-tag-padding);
+  font-size: var(--exam-type-tag-size);
+  font-weight: var(--font-semibold);
+  border-radius: var(--exam-type-tag-radius);
+  white-space: nowrap;
+}
+.exam-tag--single { background: var(--exam-type-single-bg); color: var(--exam-type-single-text); }
+.exam-tag--multiple { background: var(--exam-type-multiple-bg); color: var(--exam-type-multiple-text); }
+.exam-tag--judge { background: var(--exam-type-judge-bg); color: var(--exam-type-judge-text); }
+.exam-tag--essay { background: var(--exam-type-essay-bg); color: var(--exam-type-essay-text); }
+
+/* 16.4 新增关键动画 */
+@keyframes answer-cell-pop {
+  0% { transform: scale(0.85); }
+  60% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+@keyframes wizard-step-pop {
+  0% { transform: scale(0.8); }
+  60% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+/* 16.5 响应式增强 — 答题卡双端形态 + 触控优化 */
+@media (max-width: 768px) {
+  .answer-card-panel { display: none; }   /* 移动端用底部抽屉 */
+  .answer-card-grid { grid-template-columns: repeat(auto-fill, var(--answer-card-cell-size-mobile)); }
+  .answer-cell { width: var(--answer-card-cell-size-mobile); height: var(--answer-card-cell-size-mobile); }
+  .select-field__trigger { height: var(--select-height-mobile); }
+  .wizard-steps { overflow-x: auto; }
+}
+@media (min-width: 769px) {
+  .answer-card-drawer { display: none; }  /* PC 端用侧栏面板 */
+}
+
+/* ===== v2.1 图表与范围控件样式 ===== */
+.line-chart-path{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.line-chart-dot{stroke:var(--glass-bg-2);stroke-width:2}
+.chart-axis-text{fill:var(--text-tertiary);font-size:10px;font-family:var(--font-body)}
+.line-chart-area{}
+.scope-bar{display:flex;align-items:center;gap:var(--space-md);flex-wrap:wrap;margin-bottom:var(--space-lg)}
+.scope-tabs{display:inline-flex;background:var(--glass-bg-2);border:1px solid var(--glass-border);border-radius:var(--radius-full);padding:4px}
+.scope-tab{border:none;background:transparent;color:var(--text-secondary);font-size:var(--text-small);font-weight:var(--font-semibold);padding:6px 16px;border-radius:var(--radius-full);cursor:pointer;transition:all .15s ease;font-family:var(--font-body);white-space:nowrap}
+.scope-tab.active{background:var(--accent-gradient);color:#fff;box-shadow:var(--shadow-accent-glow)}
+
+</style>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-body);background:var(--bg-base);color:var(--text-primary);line-height:var(--leading-normal);overflow-x:hidden;min-height:100vh;transition:background-color .25s ease,color .25s ease}
+.page{display:none;min-height:100vh;animation:page-transition .25s var(--ease-out)}
+.page.active{display:block}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-xs);padding:var(--space-sm) var(--space-xl);border-radius:var(--radius-lg);border:none;font-family:var(--font-body);font-size:var(--text-body);font-weight:var(--font-semibold);cursor:pointer;transition:all .15s var(--ease-smooth);position:relative;overflow:hidden;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--accent-gradient);color:#fff;box-shadow:var(--shadow-accent-glow)}
+.btn-primary:hover{background:var(--accent-gradient-hover);transform:translateY(-1px)}
+.btn-glass{background:var(--glass-bg-2);backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);border:1px solid var(--glass-border);color:var(--text-primary)}
+.btn-glass:hover{background:var(--glass-highlight);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--text-secondary)}
+.btn-ghost:hover{background:var(--glass-bg-3);color:var(--text-primary)}
+.btn-danger{background:var(--color-danger);color:#fff}
+.btn-sm{padding:var(--space-xs) var(--space-md);font-size:var(--text-small);border-radius:var(--radius-md)}
+.btn-icon{width:40px;height:40px;padding:0;border-radius:var(--radius-full)}
+.input-group{position:relative;margin-bottom:var(--space-lg)}
+.input-label{display:block;font-size:var(--text-small);color:var(--text-secondary);margin-bottom:var(--space-xs);font-weight:var(--font-medium)}
+.input-field{width:100%;padding:var(--space-md) var(--space-lg);background:var(--bg-input);border:1px solid var(--border-default);border-radius:var(--radius-lg);color:var(--text-primary);font-size:var(--text-body);font-family:var(--font-body);transition:all .15s ease;outline:none}
+.input-field:focus{border-color:var(--accent-blue);box-shadow:0 0 0 3px rgba(91,124,250,.15)}
+.input-glass{background:var(--glass-bg-3);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--glass-border)}
+.badge{display:inline-flex;align-items:center;gap:var(--space-2xs);padding:var(--space-3xs) var(--space-sm);border-radius:var(--radius-full);font-size:var(--text-micro);font-weight:var(--font-semibold)}
+.badge-blue{background:var(--color-info-bg);color:var(--color-info)}
+.badge-green{background:var(--color-success-bg);color:var(--color-success)}
+.badge-orange{background:var(--color-warning-bg);color:var(--color-warning)}
+.badge-red{background:var(--color-danger-bg);color:var(--color-danger)}
+.badge-purple{background:rgba(139,92,246,.15);color:var(--accent-purple)}
+.badge-gray{background:var(--glass-bg-3);color:var(--text-secondary)}
+.text-center{text-align:center}.text-secondary{color:var(--text-secondary)}.text-tertiary{color:var(--text-tertiary)}
+.text-gradient{background:var(--accent-gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.flex{display:flex}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}
+.gap-xs{gap:var(--space-xs)}.gap-sm{gap:var(--space-sm)}.gap-md{gap:var(--space-md)}.gap-lg{gap:var(--space-lg)}
+.w-full{width:100%}.flex-1{flex:1}
+.mt-xs{margin-top:var(--space-xs)}.mt-sm{margin-top:var(--space-sm)}.mt-md{margin-top:var(--space-md)}.mt-lg{margin-top:var(--space-lg)}.mt-xl{margin-top:var(--space-xl)}.mt-2xl{margin-top:var(--space-2xl)}
+.mb-sm{margin-bottom:var(--space-sm)}.mb-md{margin-bottom:var(--space-md)}.mb-lg{margin-bottom:var(--space-lg)}.mb-xl{margin-bottom:var(--space-xl)}
+.numeric{font-family:var(--font-numeric);font-variant-numeric:tabular-nums;letter-spacing:.05em}
+#page-login{display:none;align-items:center;justify-content:center;padding:var(--space-xl)}
+#page-login.active{display:flex}
+.login-card{width:100%;max-width:420px;padding:var(--space-3xl) var(--space-2xl);border-radius:var(--radius-2xl);animation:modal-enter .4s var(--ease-spring)}
+.login-logo{width:64px;height:64px;margin:0 auto var(--space-lg);border-radius:var(--radius-xl);background:var(--accent-gradient);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-accent-glow)}
+.login-logo svg{width:32px;height:32px;color:#fff}
+.login-title{font-size:var(--text-h3);font-weight:var(--font-bold);text-align:center;margin-bottom:var(--space-xs)}
+.login-subtitle{font-size:var(--text-small);color:var(--text-secondary);text-align:center;margin-bottom:var(--space-2xl)}
+.login-tabs{display:flex;gap:var(--space-2xs);padding:var(--space-3xs);background:var(--bg-input);border-radius:var(--radius-lg);margin-bottom:var(--space-xl)}
+.login-tab{flex:1;padding:var(--space-sm) var(--space-md);border-radius:var(--radius-md);text-align:center;font-size:var(--text-small);font-weight:var(--font-medium);color:var(--text-secondary);cursor:pointer;transition:all .15s ease;border:none;background:transparent}
+.login-tab.active{background:var(--accent-gradient);color:#fff;box-shadow:var(--shadow-accent-glow)}
+.user-topbar{position:sticky;top:0;z-index:var(--z-sticky);display:flex;align-items:center;justify-content:space-between;padding:var(--space-md) var(--space-lg);height:var(--topbar-height-mobile)}
+.user-avatar{width:36px;height:36px;border-radius:var(--radius-full);background:var(--accent-gradient);display:flex;align-items:center;justify-content:center;color:#fff;font-size:var(--text-small);font-weight:var(--font-semibold);flex-shrink:0}
+.exam-list-container{padding:var(--space-md) var(--space-lg) 80px;max-width:640px;margin:0 auto}
+.exam-filter-bar{display:flex;gap:var(--space-xs);margin-bottom:var(--space-lg);overflow-x:auto;scrollbar-width:none}
+.exam-filter-bar::-webkit-scrollbar{display:none}
+.filter-chip{padding:var(--space-xs) var(--space-md);border-radius:var(--radius-full);font-size:var(--text-small);font-weight:var(--font-medium);white-space:nowrap;cursor:pointer;transition:all .15s ease;border:1px solid var(--glass-border);background:var(--glass-bg-3);color:var(--text-secondary)}
+.filter-chip.active{background:var(--accent-gradient);color:#fff;border-color:transparent}
+.exam-card{padding:var(--space-lg);border-radius:var(--radius-xl);margin-bottom:var(--space-md);cursor:pointer;transition:all .25s ease;position:relative;overflow:hidden}
+.exam-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-overlay)}
+.exam-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;z-index:1}
+.exam-card-pending::after{background:var(--accent-gradient)}
+.exam-card-active::after{background:var(--color-success)}
+.exam-card-done{opacity:.7}
+.exam-card-done::after{background:var(--text-tertiary)}
+.exam-card-title{font-size:var(--text-h4);font-weight:var(--font-semibold);margin-bottom:var(--space-xs)}
+.exam-card-meta{display:flex;flex-wrap:wrap;gap:var(--space-md);font-size:var(--text-small);color:var(--text-secondary);margin-top:var(--space-sm)}
+.exam-card-meta-item{display:flex;align-items:center;gap:var(--space-2xs)}
+.exam-card-score{font-size:var(--text-h3);font-weight:var(--font-bold)}
+.tabbar{position:fixed;bottom:0;left:0;right:0;z-index:var(--z-fixed);display:flex;align-items:center;justify-content:space-around;height:var(--tabbar-height);padding-bottom:env(safe-area-inset-bottom,0)}
+.tabbar-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:var(--space-xs) var(--space-md);cursor:pointer;color:var(--text-tertiary);transition:color .15s ease;border:none;background:transparent}
+.tabbar-item.active{color:var(--accent-blue)}
+.tabbar-item svg{width:24px;height:24px}
+.tabbar-item span{font-size:var(--text-micro);font-weight:var(--font-medium)}
+.exam-timer-bar{position:sticky;top:0;z-index:var(--z-sticky);display:flex;align-items:center;justify-content:space-between;padding:var(--space-md) var(--space-lg)}
+.timer-display{font-size:var(--text-timer);font-weight:var(--font-heavy);font-family:var(--font-numeric);font-variant-numeric:tabular-nums;transition:color .4s ease}
+.timer-safe{color:var(--timer-safe)}.timer-caution{color:var(--timer-caution)}.timer-danger{color:var(--timer-danger)}
+.timer-critical{color:var(--timer-danger-pulse);animation:timer-critical 1s ease-in-out infinite}
+.timer-label{font-size:var(--text-small);color:var(--text-secondary);font-weight:var(--font-medium)}
+.exam-content{padding:var(--space-lg);max-width:800px;margin:0 auto;padding-bottom:200px}
+.question-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-lg)}
+.question-progress{font-size:var(--text-small);color:var(--text-secondary)}
+.question-progress .current{color:var(--accent-blue);font-weight:var(--font-bold);font-size:var(--text-h4)}
+.question-body{font-size:var(--text-body-l);line-height:var(--leading-relaxed);margin-bottom:var(--space-xl);font-weight:var(--font-medium)}
+.option-list{display:flex;flex-direction:column;gap:var(--space-sm)}
+.option-item{display:flex;align-items:center;gap:var(--space-md);padding:var(--space-md) var(--space-lg);border-radius:var(--radius-lg);border:1.5px solid var(--border-default);background:var(--glass-bg-3);cursor:pointer;transition:all .15s var(--ease-spring);user-select:none}
+.option-item:hover{border-color:var(--accent-blue);background:var(--color-info-bg)}
+.option-item.selected{border-color:var(--accent-blue);background:rgba(91,124,250,.12);box-shadow:0 0 0 3px rgba(91,124,250,.1)}
+.option-marker{width:28px;height:28px;border-radius:var(--radius-full);border:2px solid var(--border-strong);display:flex;align-items:center;justify-content:center;font-size:var(--text-small);font-weight:var(--font-semibold);color:var(--text-secondary);flex-shrink:0;transition:all .15s ease}
+.option-item.selected .option-marker{background:var(--accent-gradient);border-color:transparent;color:#fff}
+.option-item.selected .option-marker.checkbox{border-radius:var(--radius-sm)}
+.answer-card-nav{position:fixed;bottom:0;left:0;right:0;z-index:var(--z-fixed);padding:var(--space-md) var(--space-lg);padding-bottom:calc(var(--space-md) + env(safe-area-inset-bottom,0))}
+.answer-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-sm)}
+.answer-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:var(--space-xs);margin-bottom:var(--space-md)}
+.answer-card-cell{aspect-ratio:1;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:var(--text-small);font-weight:var(--font-semibold);cursor:pointer;transition:all .15s ease;border:1.5px solid var(--border-default);background:var(--glass-bg-3);color:var(--text-secondary)}
+.answer-card-cell.answered{background:rgba(91,124,250,.2);border-color:var(--accent-blue);color:var(--accent-blue)}
+.answer-card-cell.marked{border-color:var(--color-warning);color:var(--color-warning)}
+.answer-card-cell.current{background:var(--accent-gradient);border-color:transparent;color:#fff;transform:scale(1.1)}
+.exam-nav-buttons{display:flex;gap:var(--space-sm)}
+.exam-nav-buttons .btn{flex:1}
+.reconnect-indicator{position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:var(--z-toast);display:none;align-items:center;gap:var(--space-sm);padding:var(--space-sm) var(--space-lg);border-radius:var(--radius-full);font-size:var(--text-small);font-weight:var(--font-medium);background:var(--color-warning-bg);border:1px solid rgba(251,191,36,.3);color:var(--color-warning);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.reconnect-indicator.show{display:flex;animation:fade-in .25s ease}
+.reconnect-dot{width:8px;height:8px;border-radius:50%;background:var(--color-warning);animation:timer-pulse 1.5s ease-in-out infinite}
+.anti-cheat-overlay{position:fixed;inset:0;z-index:var(--z-toast);display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.anti-cheat-overlay.show{display:flex;animation:fade-in .15s ease}
+.anti-cheat-warning{text-align:center;padding:var(--space-3xl);max-width:360px}
+.anti-cheat-icon{width:72px;height:72px;margin:0 auto var(--space-lg);border-radius:50%;background:var(--color-danger-bg);display:flex;align-items:center;justify-content:center;animation:timer-pulse 1s ease-in-out infinite}
+.anti-cheat-icon svg{width:36px;height:36px;color:var(--color-danger)}
+.result-container{padding:var(--space-xl) var(--space-lg);max-width:640px;margin:0 auto;padding-bottom:80px}
+.score-hero{text-align:center;padding:var(--space-2xl) var(--space-lg);border-radius:var(--radius-2xl);margin-bottom:var(--space-xl)}
+.score-number{font-size:var(--text-score-l);font-weight:var(--font-heavy);font-family:var(--font-numeric);font-variant-numeric:tabular-nums;line-height:1;background:var(--accent-gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.score-total{font-size:var(--text-h4);color:var(--text-tertiary);font-weight:var(--font-medium)}
+.ring-chart-container{display:flex;align-items:center;justify-content:center;padding:var(--space-lg)}
+.ring-chart{position:relative;width:160px;height:160px}
+.ring-chart svg{transform:rotate(-90deg)}
+.ring-chart-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.ring-chart-value{font-size:var(--text-h2);font-weight:var(--font-bold);font-family:var(--font-numeric)}
+.ring-chart-label{font-size:var(--text-micro);color:var(--text-secondary)}
+.review-item{border-radius:var(--radius-lg);overflow:hidden;margin-bottom:var(--space-sm)}
+.review-header{display:flex;align-items:center;justify-content:space-between;padding:var(--space-md) var(--space-lg);cursor:pointer;transition:background .15s ease}
+.review-header:hover{background:var(--glass-bg-3)}
+.review-detail{max-height:0;overflow:hidden;transition:max-height .25s ease}
+.review-detail.open{max-height:500px}
+.review-detail-inner{padding:var(--space-md) var(--space-lg);border-top:1px solid var(--border-subtle)}
+.knowledge-tags{display:flex;flex-wrap:wrap;gap:var(--space-xs)}
+.admin-layout{display:flex;min-height:100vh}
+.admin-sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-width);z-index:var(--z-fixed);display:flex;flex-direction:column;padding:var(--space-lg) var(--space-md);overflow-y:auto}
+.admin-sidebar-logo{display:flex;align-items:center;gap:var(--space-sm);padding:var(--space-sm) var(--space-md);margin-bottom:var(--space-xl)}
+.admin-sidebar-logo-icon{width:32px;height:32px;border-radius:var(--radius-md);background:var(--accent-gradient);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.admin-sidebar-logo-icon svg{width:18px;height:18px;color:#fff}
+.admin-sidebar-logo-text{font-size:var(--text-small);font-weight:var(--font-bold);white-space:nowrap}
+.admin-nav-item{display:flex;align-items:center;gap:var(--space-sm);padding:var(--space-sm) var(--space-md);border-radius:var(--radius-md);font-size:var(--text-small);font-weight:var(--font-medium);color:var(--text-secondary);cursor:pointer;transition:all .15s ease;margin-bottom:var(--space-2xs);border:none;background:transparent;text-align:left;width:100%}
+.admin-nav-item:hover{background:var(--glass-bg-3);color:var(--text-primary)}
+.admin-nav-item.active{background:var(--accent-gradient);color:#fff;box-shadow:var(--shadow-accent-glow)}
+.admin-nav-item svg{width:18px;height:18px;flex-shrink:0}
+.admin-main{flex:1;margin-left:var(--sidebar-width);padding:var(--space-xl);padding-top:var(--space-lg)}
+.admin-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-xl)}
+.admin-page-title{font-size:var(--text-h3);font-weight:var(--font-bold)}
+.admin-page-subtitle{font-size:var(--text-small);color:var(--text-secondary);margin-top:var(--space-2xs)}
+.admin-mobile-toggle{display:none}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-lg);margin-bottom:var(--space-xl)}
+.stat-card{padding:var(--space-lg);border-radius:var(--radius-xl)}
+.stat-card-icon{width:44px;height:44px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;margin-bottom:var(--space-md)}
+.stat-card-icon svg{width:22px;height:22px}
+.stat-card-value{font-size:var(--text-h1);font-weight:var(--font-heavy);font-family:var(--font-numeric);font-variant-numeric:tabular-nums;line-height:1.1}
+.stat-card-label{font-size:var(--text-small);color:var(--text-secondary);margin-top:var(--space-xs)}
+.stat-card-trend{display:inline-flex;align-items:center;gap:2px;font-size:var(--text-micro);font-weight:var(--font-semibold);margin-top:var(--space-xs)}
+.quick-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-md);margin-bottom:var(--space-xl)}
+.quick-action{display:flex;flex-direction:column;align-items:center;gap:var(--space-sm);padding:var(--space-lg);border-radius:var(--radius-lg);cursor:pointer;transition:all .15s ease;border:1px solid var(--glass-border);background:var(--glass-bg-3)}
+.quick-action:hover{transform:translateY(-2px);border-color:var(--accent-blue)}
+.quick-action-icon{width:40px;height:40px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center}
+.quick-action-icon svg{width:20px;height:20px}
+.quick-action-label{font-size:var(--text-small);font-weight:var(--font-medium)}
+.activity-timeline{padding:var(--space-lg);border-radius:var(--radius-xl)}
+.activity-item{display:flex;gap:var(--space-md);padding:var(--space-sm) 0;position:relative}
+.activity-item:not(:last-child)::before{content:'';position:absolute;left:7px;top:28px;bottom:-8px;width:2px;background:var(--border-default)}
+.activity-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0;margin-top:2px;border:3px solid var(--bg-base)}
+.activity-content{flex:1}
+.activity-text{font-size:var(--text-small);font-weight:var(--font-medium)}
+.activity-time{font-size:var(--text-micro);color:var(--text-tertiary);margin-top:2px}
+.filter-toolbar{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-lg);align-items:center}
+.search-wrapper{position:relative;flex:1;min-width:200px}
+.search-wrapper svg{position:absolute;left:var(--space-sm);top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--text-tertiary)}
+.search-wrapper input{width:100%;padding:var(--space-sm) var(--space-md) var(--space-sm) var(--space-xl);background:var(--bg-input);border:1px solid var(--border-default);border-radius:var(--radius-md);color:var(--text-primary);font-size:var(--text-small);outline:none}
+.search-wrapper input:focus{border-color:var(--accent-blue)}
+.select-pill{padding:var(--space-sm) var(--space-md);background:var(--bg-input);border:1px solid var(--border-default);border-radius:var(--radius-md);color:var(--text-primary);font-size:var(--text-small);cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right var(--space-sm) center;padding-right:var(--space-xl)}
+.data-table-wrapper{border-radius:var(--radius-xl);overflow:hidden}
+.data-table{width:100%;border-collapse:collapse}
+.data-table th{text-align:left;padding:var(--space-md) var(--space-lg);font-size:var(--text-micro);font-weight:var(--font-semibold);color:var(--text-secondary);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border-default);white-space:nowrap}
+.data-table td{padding:var(--space-md) var(--space-lg);font-size:var(--text-small);border-bottom:1px solid var(--border-subtle);vertical-align:middle}
+.data-table tbody tr{transition:background .15s ease}
+.data-table tbody tr:hover{background:var(--glass-bg-3)}
+.table-actions{display:flex;gap:var(--space-xs)}
+.table-action-btn{width:32px;height:32px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;background:transparent;color:var(--text-secondary);transition:all .15s ease}
+.table-action-btn:hover{background:var(--glass-bg-3);color:var(--accent-blue)}
+.table-action-btn svg{width:16px;height:16px}
+.pagination{display:flex;align-items:center;justify-content:space-between;padding:var(--space-md) var(--space-lg)}
+.chart-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:var(--space-lg);margin-bottom:var(--space-lg)}
+.chart-card{padding:var(--space-lg);border-radius:var(--radius-xl)}
+.chart-card-title{font-size:var(--text-h4);font-weight:var(--font-semibold);margin-bottom:var(--space-xs)}
+.chart-card-subtitle{font-size:var(--text-micro);color:var(--text-secondary);margin-bottom:var(--space-lg)}
+.line-chart-svg{width:100%;height:200px}
+.bar-chart{display:flex;align-items:flex-end;gap:var(--space-xs);height:200px;padding:var(--space-sm) 0}
+.bar-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:var(--space-xs);height:100%;justify-content:flex-end}
+.bar-fill{width:100%;max-width:40px;border-radius:var(--radius-xs) var(--radius-xs) 0 0;background:var(--accent-gradient);transition:height .8s var(--ease-spring);min-height:4px}
+.bar-label{font-size:var(--text-micro);color:var(--text-tertiary);white-space:nowrap}
+.bar-value{font-size:var(--text-micro);font-weight:var(--font-semibold);color:var(--text-secondary)}
+.donut-chart-svg{width:180px;height:180px}
+.chart-legend{display:flex;flex-direction:column;gap:var(--space-xs);margin-top:var(--space-md)}
+.legend-item{display:flex;align-items:center;gap:var(--space-sm);font-size:var(--text-small)}
+.legend-dot{width:10px;height:10px;border-radius:var(--radius-xs);flex-shrink:0}
+.legend-label{flex:1;color:var(--text-secondary)}
+.legend-value{font-weight:var(--font-semibold)}
+.user-mgmt-layout{display:flex;gap:var(--space-lg)}
+.tree-nav{width:240px;flex-shrink:0;padding:var(--space-lg);border-radius:var(--radius-xl)}
+.tree-nav-title{font-size:var(--text-small);font-weight:var(--font-semibold);color:var(--text-secondary);margin-bottom:var(--space-md);text-transform:uppercase;letter-spacing:.05em}
+.tree-item{display:flex;align-items:center;gap:var(--space-xs);padding:var(--space-xs) var(--space-sm);border-radius:var(--radius-sm);font-size:var(--text-small);cursor:pointer;transition:all .15s ease;color:var(--text-secondary)}
+.tree-item:hover{background:var(--glass-bg-3);color:var(--text-primary)}
+.tree-item.active{background:var(--color-info-bg);color:var(--accent-blue);font-weight:var(--font-semibold)}
+.tree-item svg{width:14px;height:14px}
+.tree-item .tree-count{margin-left:auto;font-size:var(--text-micro);color:var(--text-tertiary)}
+.tree-children{margin-left:var(--space-md);border-left:1px solid var(--border-subtle);padding-left:var(--space-xs)}
+.settings-section{padding:var(--space-lg);border-radius:var(--radius-xl);margin-bottom:var(--space-lg)}
+.settings-section-title{font-size:var(--text-h4);font-weight:var(--font-semibold);margin-bottom:var(--space-xs)}
+.settings-section-desc{font-size:var(--text-small);color:var(--text-secondary);margin-bottom:var(--space-lg)}
+.settings-row{display:flex;align-items:center;justify-content:space-between;padding:var(--space-md) 0;border-bottom:1px solid var(--border-subtle)}
+.settings-row:last-child{border-bottom:none}
+.settings-row-label{font-size:var(--text-small);font-weight:var(--font-medium)}
+.settings-row-desc{font-size:var(--text-micro);color:var(--text-tertiary);margin-top:2px}
+.toggle{position:relative;width:44px;height:26px;border-radius:var(--radius-full);background:var(--border-strong);cursor:pointer;transition:background .15s ease;flex-shrink:0}
+.toggle.on{background:var(--accent-blue)}
+.toggle::after{content:'';position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .15s var(--ease-spring);box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.toggle.on::after{transform:translateX(18px)}
+.modal-backdrop{position:fixed;inset:0;z-index:var(--z-modal-backdrop);background:var(--modal-backdrop);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:var(--space-lg)}
+.modal-backdrop.show{display:flex;animation:fade-in .15s ease}
+.modal{width:100%;max-width:480px;max-height:85vh;overflow-y:auto;padding:var(--space-xl);border-radius:var(--radius-2xl);animation:modal-enter .25s var(--ease-spring)}
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-lg)}
+.modal-title{font-size:var(--text-h4);font-weight:var(--font-bold)}
+.modal-close{width:32px;height:32px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;background:transparent;color:var(--text-secondary);transition:all .15s ease}
+.modal-close:hover{background:var(--glass-bg-3);color:var(--text-primary)}
+.modal-close svg{width:18px;height:18px}
+.modal-footer{display:flex;gap:var(--space-sm);justify-content:flex-end;margin-top:var(--space-xl)}
+.modal.large{max-width:680px}
+.bank-list{display:flex;flex-direction:column;gap:var(--space-sm)}
+.bank-chip{display:flex;align-items:center;gap:var(--space-sm);padding:var(--space-md) var(--space-lg);background:var(--glass-bg-3);border:1px solid var(--glass-border);border-radius:var(--radius-lg);cursor:pointer;transition:all .15s ease;font-size:var(--text-small);color:var(--text-primary)}
+.bank-chip:hover{background:var(--glass-highlight)}
+.bank-chip:has(input:checked){border-color:var(--accent-blue);background:var(--color-info-bg)}
+.bank-chip input{accent-color:var(--accent-blue);width:16px;height:16px;margin:0;flex-shrink:0}
+.type-config{display:flex;flex-direction:column;gap:var(--space-sm);background:var(--glass-bg-3);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-md) var(--space-lg)}
+.type-row{display:flex;align-items:center;gap:var(--space-sm);font-size:var(--text-small);color:var(--text-primary)}
+.type-row>span{width:64px;font-weight:var(--font-medium);color:var(--text-secondary);flex-shrink:0}
+.tc-num,.tc-score{width:68px;padding:var(--space-sm) var(--space-md);text-align:center;background:var(--bg-input);border:1px solid var(--border-default);border-radius:var(--radius-md);color:var(--text-primary);font-size:var(--text-small);outline:none;font-family:var(--font-body)}
+.tc-num:focus,.tc-score:focus{border-color:var(--accent-blue);box-shadow:0 0 0 3px rgba(91,124,250,.15)}
+.detail-list{display:flex;flex-direction:column}
+.detail-row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-md);padding:var(--space-md) 0;border-bottom:1px solid var(--border-subtle)}
+.detail-row:last-child{border-bottom:none}
+.detail-row .k{font-size:var(--text-small);color:var(--text-secondary)}
+.detail-row .v{font-size:var(--text-small);font-weight:var(--font-semibold);color:var(--text-primary);text-align:right}
+.upload-zone{border:2px dashed var(--border-strong);border-radius:var(--radius-xl);padding:var(--space-3xl) var(--space-xl);text-align:center;cursor:pointer;transition:all .15s ease}
+.upload-zone:hover{border-color:var(--accent-blue);background:var(--color-info-bg)}
+.upload-zone-icon{width:56px;height:56px;margin:0 auto var(--space-md);border-radius:var(--radius-lg);background:var(--color-info-bg);display:flex;align-items:center;justify-content:center}
+.upload-zone-icon svg{width:28px;height:28px;color:var(--accent-blue)}
+.toast-container{position:fixed;top:var(--space-xl);right:var(--space-xl);z-index:var(--z-toast);display:flex;flex-direction:column;gap:var(--space-sm);pointer-events:none}
+.toast{display:flex;align-items:center;gap:var(--space-sm);padding:var(--space-md) var(--space-lg);border-radius:var(--radius-lg);font-size:var(--text-small);font-weight:var(--font-medium);backdrop-filter:blur(40px) saturate(200%);-webkit-backdrop-filter:blur(40px) saturate(200%);background:var(--glass-bg-2);border:1px solid var(--glass-border);box-shadow:var(--shadow-overlay);animation:toast-slide-in .25s var(--ease-spring);pointer-events:auto;max-width:360px}
+.toast.success svg{color:var(--color-success);background:var(--color-success-bg)}.toast.error svg{color:var(--color-danger);background:var(--color-danger-bg)}.toast.info svg{color:var(--color-info);background:var(--color-info-bg)}
+.toast svg{width:18px;height:18px;flex-shrink:0;border-radius:50%;padding:4px;box-sizing:content-box}
+@media(max-width:768px){.admin-sidebar{transform:translateX(-100%);transition:transform .25s ease}.admin-sidebar.open{transform:translateX(0)}.admin-main{margin-left:0;padding:var(--space-md);padding-top:var(--space-lg)}.admin-mobile-toggle{display:flex}.stats-grid{grid-template-columns:repeat(2,1fr)}.chart-grid{grid-template-columns:1fr}.user-mgmt-layout{flex-direction:column}.tree-nav{width:100%}.data-table{font-size:var(--text-micro)}.data-table th,.data-table td{padding:var(--space-sm)}}
+@media(max-width:640px){.stats-grid{grid-template-columns:1fr}.stat-card-value{font-size:var(--text-h2)}.login-card{padding:var(--space-xl) var(--space-lg)}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+<div class="mesh-gradient-bg"><div class="orb"></div></div>
+
+<div class="toast-container" id="toast-container"></div>
+<!-- ===== P1 登录页 ===== -->
+<div class="page active" id="page-login">
+<div class="login-card glass-modal">
+<div class="login-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+<h1 class="login-title">养护工区考试系统</h1>
+<p class="login-subtitle">安全规范 · 持证上岗 · 知识赋能</p>
+<div class="login-tabs">
+<button class="login-tab active" data-role="user" onclick="switchLoginTab('user')">普通用户</button>
+<button class="login-tab" data-role="admin" onclick="switchLoginTab('admin')">管理员</button>
+</div>
+<form onsubmit="handleLogin(event)">
+<div class="input-group"><label class="input-label">账号</label><input type="text" class="input-field input-glass" id="login-account" placeholder="工号 / 手机号"></div>
+<div class="input-group"><label class="input-label">密码</label><input type="password" class="input-field input-glass" id="login-password" placeholder="请输入密码"></div>
+<div class="flex items-center justify-between mb-lg">
+<label style="display:flex;align-items:center;gap:6px;font-size:var(--text-small);color:var(--text-secondary);cursor:pointer"><input type="checkbox" style="accent-color:var(--accent-blue)" checked> 记住我</label>
+<a href="javascript:void(0)" style="font-size:var(--text-small);color:var(--accent-blue)" onclick="showToast('请联系管理员重置密码','info')">忘记密码？</a>
+</div>
+<button type="submit" class="btn btn-primary w-full" style="padding:var(--space-md)">登 录</button>
+</form>
+<p class="text-center text-secondary" style="font-size:var(--text-micro);margin-top:var(--space-xl)">普通用户使用工号登录（默认密码 123456）<br>管理员默认账号 admin / 密码 123456</p>
+<p class="text-center" style="margin-top:var(--space-lg)"><a href="javascript:void(0)" style="font-size:var(--text-small);color:var(--accent-blue);font-weight:var(--font-semibold)" onclick="toggleRegister()">还没有账号？立即注册</a></p>
+<div id="register-panel" style="display:none;margin-top:var(--space-lg);padding-top:var(--space-lg);border-top:1px solid var(--border-subtle)">
+<h3 style="font-size:var(--text-h4);font-weight:var(--font-bold);text-align:center;margin-bottom:var(--space-lg)">注册新账号</h3>
+<form onsubmit="submitRegister(event)">
+<div class="input-group"><label class="input-label">工号（登录账号）</label><input type="text" class="input-field input-glass" id="reg-account" placeholder="如 YG2026013"></div>
+<div class="input-group"><label class="input-label">姓名</label><input type="text" class="input-field input-glass" id="reg-name" placeholder="请输入姓名"></div>
+<div class="input-group"><label class="input-label">所属养护工区</label><input type="text" class="input-field input-glass" id="reg-area" placeholder="如 城南养护工区"></div>
+<div class="input-group"><label class="input-label">密码（至少 6 位）</label><input type="password" class="input-field input-glass" id="reg-password" placeholder="设置密码"></div>
+<div class="input-group"><label class="input-label">确认密码</label><input type="password" class="input-field input-glass" id="reg-confirm" placeholder="再次输入密码"></div>
+<button type="submit" class="btn btn-primary w-full" style="padding:var(--space-md)">注 册</button>
+</form>
+<p class="text-center text-secondary" style="font-size:var(--text-micro);margin-top:var(--space-md)"><a href="javascript:void(0)" style="color:var(--accent-blue)" onclick="toggleRegister()">返回登录</a></p>
+</div>
+</div>
+</div>
+
+<!-- ===== P2 用户首页 ===== -->
+<div class="page" id="page-user-home">
+<nav class="user-topbar glass-nav">
+<div class="flex items-center gap-sm"><div class="user-avatar">王</div><div><div style="font-size:var(--text-body);font-weight:var(--font-semibold)">王建国</div><div style="font-size:var(--text-micro);color:var(--text-secondary)">城南养护工区</div></div></div>
+<button class="btn btn-ghost btn-icon" onclick="navigateTo('page-login');showToast('已退出登录','info')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button>
+</nav>
+<div class="exam-list-container">
+<h2 style="font-size:var(--text-h3);font-weight:var(--font-bold);margin-bottom:var(--space-sm)">我的考试</h2>
+<p class="text-secondary" style="font-size:var(--text-small);margin-bottom:var(--space-lg)">下拉刷新最新考试安排</p>
+<div class="exam-filter-bar">
+<button class="filter-chip active" onclick="filterExams(this,'all')">全部</button>
+<button class="filter-chip" onclick="filterExams(this,'pending')">待考试</button>
+<button class="filter-chip" onclick="filterExams(this,'active')">进行中</button>
+<button class="filter-chip" onclick="filterExams(this,'done')">已完成</button>
+</div>
+<div id="exam-list"></div>
+</div>
+<nav class="tabbar glass-nav">
+<button class="tabbar-item active" onclick="switchTab(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>首页</span></button>
+<button class="tabbar-item" onclick="switchTab(this);navigateTo('page-personal-analytics')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span>成绩</span></button>
+<button class="tabbar-item" onclick="switchTab(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>我的</span></button>
+</nav>
+</div>
+
+<!-- ===== P3 考试答题页 ===== -->
+<div class="page" id="page-exam">
+<div class="exam-timer-bar glass-nav" id="exam-timer-bar">
+<div class="flex items-center gap-sm"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;color:var(--text-secondary)"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="timer-label">剩余时间</span></div>
+<div class="timer-display timer-safe" id="timer-display">45:00</div>
+<button class="btn btn-ghost btn-sm" onclick="showAntiCheat()">退出</button>
+</div>
+<div class="reconnect-indicator" id="reconnect-indicator"><div class="reconnect-dot"></div><span>网络断开，正在重连...答案已自动保存</span></div>
+<div class="exam-content">
+<div class="question-header"><div class="question-progress">第 <span class="current" id="current-q">1</span> / <span id="total-q">10</span> 题</div><div id="question-type-badge"></div></div>
+<div class="question-body" id="question-body"></div>
+<div class="option-list" id="option-list"></div>
+</div>
+<div class="answer-card-nav glass-nav">
+<div class="answer-card-header"><span style="font-size:var(--text-small);font-weight:var(--font-semibold)">答题卡</span>
+<div class="flex items-center gap-md" style="font-size:var(--text-micro);color:var(--text-secondary)">
+<span class="flex items-center gap-xs"><span style="width:10px;height:10px;border-radius:2px;background:rgba(91,124,250,.2);border:1px solid var(--accent-blue)"></span>已答</span>
+<span class="flex items-center gap-xs"><span style="width:10px;height:10px;border-radius:2px;border:1px solid var(--color-warning)"></span>标记</span>
+<span class="flex items-center gap-xs"><span style="width:10px;height:10px;border-radius:2px;border:1px solid var(--border-default)"></span>未答</span>
+</div></div>
+<div class="answer-card-grid" id="answer-card-grid"></div>
+<div class="exam-nav-buttons">
+<button class="btn btn-glass" id="btn-prev" onclick="changeQuestion(-1)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><polyline points="15 18 9 12 15 6"/></svg>上一题</button>
+<button class="btn btn-glass" id="btn-mark" onclick="toggleMark()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>标记</button>
+<button class="btn btn-primary" id="btn-next" onclick="changeQuestion(1)">下一题<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div></div>
+<div class="anti-cheat-overlay" id="anti-cheat-overlay">
+<div class="anti-cheat-warning glass-modal">
+<div class="anti-cheat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+<h3 style="font-size:var(--text-h4);font-weight:var(--font-bold);margin-bottom:var(--space-sm)">检测到离开考试页面</h3>
+<p class="text-secondary" style="font-size:var(--text-small);margin-bottom:var(--space-lg)">系统检测到您切换了应用或离开了考试页面。<br>此行为已记录，多次违规将自动提交试卷。</p>
+<div style="padding:var(--space-md);background:var(--color-danger-bg);border-radius:var(--radius-md);margin-bottom:var(--space-lg);font-size:var(--text-small);color:var(--color-danger)">当前违规次数：<strong id="violation-count">1</strong> / 3 次</div>
+<button class="btn btn-primary w-full" onclick="closeAntiCheat()">返回继续考试</button>
+</div></div>
+</div>
+
+<!-- ===== P4 考试成绩页 ===== -->
+<div class="page" id="page-exam-result">
+<nav class="user-topbar glass-nav">
+<button class="btn btn-ghost btn-icon" onclick="navigateTo('page-user-home')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+<span style="font-size:var(--text-h4);font-weight:var(--font-semibold)">考试成绩</span><div style="width:40px"></div>
+</nav>
+<div class="result-container">
+<div class="score-hero glass-card">
+<p class="text-secondary" style="font-size:var(--text-small);margin-bottom:var(--space-sm)">公路养护安全作业规范考试</p>
+<div><span class="score-number" id="score-number">0</span><span class="score-total">/ 100</span></div>
+<p style="font-size:var(--text-small);color:var(--text-secondary);margin-top:var(--space-sm)">您的成绩</p>
+<div class="badge badge-green" style="margin-top:var(--space-md)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><polyline points="20 6 9 17 4 12"/></svg>恭喜通过考试</div>
+</div>
+<div class="flex gap-md mb-lg" style="flex-wrap:wrap">
+<div class="glass-card" style="padding:var(--space-md);flex:1;min-width:100px;text-align:center"><div class="text-secondary" style="font-size:var(--text-micro)">答题数</div><div class="numeric" style="font-size:var(--text-h3);font-weight:var(--font-bold);margin-top:var(--space-2xs)">10</div></div>
+<div class="glass-card" style="padding:var(--space-md);flex:1;min-width:100px;text-align:center"><div class="text-secondary" style="font-size:var(--text-micro)">正确</div><div class="numeric" style="font-size:var(--text-h3);font-weight:var(--font-bold);color:var(--color-success);margin-top:var(--space-2xs)">8</div></div>
+<div class="glass-card" style="padding:var(--space-md);flex:1;min-width:100px;text-align:center"><div class="text-secondary" style="font-size:var(--text-micro)">错误</div><div class="numeric" style="font-size:var(--text-h3);font-weight:var(--font-bold);color:var(--color-danger);margin-top:var(--space-2xs)">2</div></div>
+<div class="glass-card" style="padding:var(--space-md);flex:1;min-width:100px;text-align:center"><div class="text-secondary" style="font-size:var(--text-micro)">用时</div><div class="numeric" style="font-size:var(--text-h3);font-weight:var(--font-bold);margin-top:var(--space-2xs)">32分</div></div>
+</div>
+<div class="glass-card mb-lg">
+<div style="padding:var(--space-lg);padding-bottom:0"><h3 style="font-size:var(--text-h4);font-weight:var(--font-semibold)">正确率</h3><p class="text-secondary" style="font-size:var(--text-small)">本次答题正确率统计</p></div>
+<div class="ring-chart-container"><div class="ring-chart">
+<svg width="160" height="160" viewBox="0 0 160 160"><defs><linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#5B7CFA"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient></defs>
+<circle cx="80" cy="80" r="65" fill="none" stroke="var(--border-default)" stroke-width="12"/>
+<circle cx="80" cy="80" r="65" fill="none" stroke="url(#ring-grad)" stroke-width="12" stroke-linecap="round" stroke-dasharray="408" stroke-dashoffset="408" id="ring-progress" transform="rotate(-90 80 80)"/></svg>
+<div class="ring-chart-center"><div class="ring-chart-value text-gradient" id="ring-value">0%</div><div class="ring-chart-label">正确率</div></div>
+</div></div>
+</div>
+<div class="glass-card mb-lg" style="padding:var(--space-lg)">
+<h3 style="font-size:var(--text-h4);font-weight:var(--font-semibold);margin-bottom:var(--space-xs)">知识点薄弱分析</h3>
+<p class="text-secondary" style="font-size:var(--text-small);margin-bottom:var(--space-md)">以下知识点需加强学习</p>
+<div class="knowledge-tags"><span class="badge badge-red">交通管制 ✕ 2题</span><span class="badge badge-orange">安全设施布置 ✕ 1题</span><span class="badge badge-blue">应急处理 ✓ 全对</span><span class="badge badge-green">施工标志 ✓ 全对</span><span class="badge badge-green">人员防护 ✓ 全对</span></div>
+</div>
+<div class="mb-lg"><h3 style="font-size:var(--text-h4);font-weight:var(--font-semibold);margin-bottom:var(--space-md)">答题回顾</h3><div id="review-list"></div></div>
+<button class="btn btn-glass w-full" onclick="navigateTo('page-personal-analytics')" style="margin-bottom:var(--space-md)">查看个人成绩分析</button>
+<button class="btn btn-primary w-full" onclick="navigateTo('page-user-home')">返回首页</button>
+</div>
+</div>
+
+<!-- 管理员页面容器（JS动态注入） -->
+<div class="page" id="page-admin-dashboard"></div>
+<div class="page" id="page-question-bank"></div>
+<div class="page" id="page-admin-analytics"></div>
+<div class="page" id="page-personal-analytics"></div>
+<div class="page" id="page-exam-management"></div>
+<div class="page" id="page-user-management"></div>
+<div class="page" id="page-settings"></div>
+<div id="modal-container"></div>
+<!-- 弹窗由JS动态构建注入 #modal-container -->
+<script>
+// SVG图标库
+const I={logo:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>',dashboard:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',question:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',exam:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>',users:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',chart:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',settings:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',logout:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>',back:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>',menu:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>',plus:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>',upload:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>',download:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',edit:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>',trash:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>',search:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',clock:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',check:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',file:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',usersPlus:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>',trending:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>',close:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'};
+
+const ADMIN_NAV=[
+{id:'page-admin-dashboard',label:'控制台',icon:'dashboard'},
+{id:'page-question-bank',label:'题库管理',icon:'question'},
+{id:'page-exam-management',label:'考试管理',icon:'exam'},
+{id:'page-user-management',label:'用户管理',icon:'users'},
+{id:'page-admin-analytics',label:'数据统计',icon:'chart'},
+{id:'page-settings',label:'系统设置',icon:'settings'}
+];
+
+function buildSidebar(active){
+return '<aside class="admin-sidebar glass-nav" id="admin-sidebar"><div class="admin-sidebar-logo"><div class="admin-sidebar-logo-icon">'+I.logo+'</div><span class="admin-sidebar-logo-text">考试管理后台</span></div>'+
+ADMIN_NAV.map(n=>'<button class="admin-nav-item '+(n.id===active?'active':'')+'" onclick="adminNavigate(this,\''+n.id+'\')">'+I[n.icon]+n.label+'</button>').join('')+
+'<div style="margin-top:auto;padding-top:var(--space-lg)"><button class="admin-nav-item" onclick="navigateTo(\'page-login\');showToast(\'已退出登录\',\'info\')">'+I.logout+'退出登录</button></div></aside>';
+}
+
+function buildTopbar(title,sub,actions){
+return '<div class="admin-topbar"><div><button class="btn btn-glass btn-icon admin-mobile-toggle" onclick="toggleAdminSidebar()" style="margin-right:var(--space-sm)">'+I.menu+'</button><h1 class="admin-page-title">'+title+'</h1><p class="admin-page-subtitle">'+sub+'</p></div><div class="flex items-center gap-sm"><div class="user-avatar" style="background:var(--accent-gradient)">管</div><div><div style="font-size:var(--text-small);font-weight:var(--font-semibold)">管理员</div><div style="font-size:var(--text-micro);color:var(--text-secondary)">超级管理员</div></div></div></div>'+(actions?'<div class="flex gap-sm mb-lg" style="justify-content:flex-end">'+actions+'</div>':'');
+}
+
+// 模拟数据
+const examListData=[
+{id:1,title:'公路养护安全作业规范考试',status:'pending',duration:'45分钟',questions:10,deadline:'2026-07-20 18:00',category:'安全作业'},
+{id:2,title:'桥梁检测技术规范考核',status:'active',duration:'60分钟',questions:15,deadline:'进行中',category:'桥梁检测'},
+{id:3,title:'路基路面养护标准测试',status:'done',score:92,duration:'30分钟',questions:8,deadline:'2026-07-10',category:'路基路面'},
+{id:4,title:'冬季除雪保通应急预案',status:'done',score:78,duration:'40分钟',questions:12,deadline:'2026-07-05',category:'应急处理'},
+{id:5,title:'交通管制作业规程考试',status:'done',score:85,duration:'35分钟',questions:10,deadline:'2026-06-28',category:'交通管制'}
+];
+
+const examQuestions=[
+{type:'single',title:'在公路养护作业区中，警告区应设置在作业区上游多远处？',options:['不少于150米','不少于500米','根据道路等级和限速确定','不少于1000米'],answer:2},
+{type:'single',title:'养护作业人员必须穿戴的反光服颜色标准是什么？',options:['橙色','荧光黄绿色','红色','白色'],answer:1},
+{type:'multi',title:'以下哪些属于公路养护安全设施？（多选）',options:['施工标志','锥形交通路标','防撞桶','夜间警示灯','广告牌'],answer:[0,1,2,3]},
+{type:'judge',title:'在高速公路上进行养护作业时，可以不设置过渡区。',options:['正确','错误'],answer:1},
+{type:'single',title:'养护作业区的终止区长度一般不小于多少米？',options:['15米','30米','50米','100米'],answer:1},
+{type:'multi',title:'夜间养护作业时，必须配备哪些设备？（多选）',options:['夜间警示灯','照明设备','反光标志','交通信号灯'],answer:[0,1,2]},
+{type:'judge',title:'交通管制人员应面向来车方向指挥交通。',options:['正确','错误'],answer:0},
+{type:'single',title:'在弯道路段进行养护作业时，警告区应如何设置？',options:['与直线路段相同','适当延长','适当缩短','不需要设置'],answer:1},
+{type:'single',title:'养护作业结束后，撤除安全设施的顺序是？',options:['从上游向下游依次撤除','从下游向上游依次撤除','同时撤除','随意撤除'],answer:0},
+{type:'judge',title:'在隧道内进行养护作业时，无需特别加强通风和照明。',options:['正确','错误'],answer:1}
+];
+
+const questionBankData=[
+{id:1,preview:'在公路养护作业区中，警告区应设置在作业区上游...',type:'单选',difficulty:'中等',category:'安全作业',uses:23},
+{id:2,preview:'养护作业人员必须穿戴的反光服颜色标准...',type:'单选',difficulty:'简单',category:'安全作业',uses:45},
+{id:3,preview:'以下哪些属于公路养护安全设施？',type:'多选',difficulty:'中等',category:'安全设施',uses:18},
+{id:4,preview:'在高速公路上进行养护作业时，可以不设置过渡区',type:'判断',difficulty:'简单',category:'安全作业',uses:67},
+{id:5,preview:'养护作业区的终止区长度一般不小于多少米？',type:'单选',difficulty:'简单',category:'安全设施',uses:34},
+{id:6,preview:'夜间养护作业时，必须配备哪些设备？',type:'多选',difficulty:'中等',category:'安全作业',uses:21},
+{id:7,preview:'交通管制人员应面向来车方向指挥交通',type:'判断',difficulty:'简单',category:'交通管制',uses:52},
+{id:8,preview:'在弯道路段进行养护作业时，警告区应如何设置？',type:'单选',difficulty:'困难',category:'安全作业',uses:12},
+{id:9,preview:'桥梁结构检查中，以下哪项属于经常检查内容？',type:'单选',difficulty:'中等',category:'桥梁检测',uses:28},
+{id:10,preview:'桥梁定期检查的周期一般为几年？',type:'单选',difficulty:'简单',category:'桥梁检测',uses:39},
+{id:11,preview:'路面裂缝的修补方法包括哪些？（多选）',type:'多选',difficulty:'中等',category:'路基路面',uses:31},
+{id:12,preview:'沥青路面车辙深度超过多少毫米时应进行维修？',type:'单选',difficulty:'困难',category:'路基路面',uses:15},
+{id:13,preview:'冬季除雪作业应优先清除哪些路段的积雪？',type:'多选',difficulty:'中等',category:'应急处理',uses:22},
+{id:14,preview:'除雪保通预案中，应急响应等级分为几级？',type:'单选',difficulty:'中等',category:'应急处理',uses:19},
+{id:15,preview:'交通锥的间距在直线段一般不大于多少米？',type:'单选',difficulty:'简单',category:'交通管制',uses:41}
+];
+
+const userData=[
+{name:'王建国',id:'YG2026001',area:'城南养护工区',role:'养护工',exams:12,avg:83},
+{name:'李明',id:'YG2026002',area:'城南养护工区',role:'养护工',exams:10,avg:76},
+{name:'张伟',id:'YG2026003',area:'城北养护工区',role:'班组长',exams:15,avg:88},
+{name:'刘强',id:'YG2026004',area:'城北养护工区',role:'养护工',exams:8,avg:71},
+{name:'陈刚',id:'YG2026005',area:'城东养护工区',role:'养护工',exams:11,avg:80},
+{name:'赵磊',id:'YG2026006',area:'城东养护工区',role:'技术员',exams:14,avg:91},
+{name:'孙杰',id:'YG2026007',area:'城西养护工区',role:'养护工',exams:9,avg:75},
+{name:'周涛',id:'YG2026008',area:'城西养护工区',role:'养护工',exams:7,avg:68},
+{name:'吴鹏',id:'YG2026009',area:'高速养护工区',role:'班组长',exams:13,avg:85},
+{name:'郑辉',id:'YG2026010',area:'高速养护工区',role:'养护工',exams:10,avg:79},
+{name:'王磊',id:'YG2026011',area:'高速养护工区',role:'养护工',exams:6,avg:65},
+{name:'刘洋',id:'YG2026012',area:'桥梁养护工区',role:'技术员',exams:12,avg:87}
+];
+
+
+var questionBanks=(function(){var map={},order=[];questionBankData.forEach(function(q){var c=q.category||'其他';if(!map[c]){map[c]={name:c+'题库',questions:[]};order.push(c);}map[c].questions.push(q);});return order.map(function(c,idx){return {id:'bk'+(idx+1),name:map[c].name,questions:map[c].questions};});})();
+function buildScores(ex){var rows=[];for(var i=0;i<ex.participants;i++){var u=userData[(i+ex.id)%userData.length];var sc=Math.max(0,Math.min(100,60+((i*7+ex.id*13)%41)));rows.push({no:u.id,name:u.name,area:u.area,correct:Math.round(sc/100*ex.questions),score:sc,time:(18+(i%30))+'分'+(i%59)+'秒',submitted:'2026-07-'+(10+(i%15))+' '+(9+(i%9))+':30'});}return rows;}
+var exams=[
+ {id:1,title:'公路养护安全作业规范考试',questions:10,duration:'45分钟',participants:45,status:'active',createdAt:'2026-07-12',banks:['bk1'],typeConfig:{single:{count:6,score:5},multi:{count:2,score:10},judge:{count:2,score:5}},deadline:'2026-07-20 18:00'},
+ {id:2,title:'桥梁检测技术规范考核',questions:15,duration:'60分钟',participants:38,status:'pending',createdAt:'2026-07-14',banks:['bk4'],typeConfig:{single:{count:10,score:4},multi:{count:3,score:8},judge:{count:2,score:5}},deadline:'2026-07-25 18:00'},
+ {id:3,title:'路基路面养护标准测试',questions:8,duration:'30分钟',participants:52,status:'done',createdAt:'2026-07-05',banks:['bk5'],typeConfig:{single:{count:5,score:6},multi:{count:1,score:10},judge:{count:2,score:5}},deadline:'2026-07-10 18:00'},
+ {id:4,title:'交通管制作业规程考试',questions:10,duration:'35分钟',participants:41,status:'done',createdAt:'2026-06-25',banks:['bk3'],typeConfig:{single:{count:6,score:5},multi:{count:2,score:10},judge:{count:2,score:5}},deadline:'2026-06-30 18:00'}
+];
+exams.forEach(function(e){e.scores=buildScores(e);});
+var registeredUsers=userData.map(function(u){return {account:u.id,name:u.name,area:u.area,password:'123456',role:'user'};});
+var editingExamId=null;
+var pendingDeleteId=null;
+
+// 主题切换
+
+
+// 页面导航
+function navigateTo(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));var t=document.getElementById(id);if(t){t.classList.add('active');window.scrollTo(0,0);if(id==='page-admin-dashboard')animateCountUp();if(id==='page-admin-analytics')renderAdminCharts();if(id==='page-personal-analytics')renderPersonalCharts();if(id==='page-exam')initExam();if(id==='page-exam-result')animateScore()}}
+function adminNavigate(btn,id){document.querySelectorAll('.admin-nav-item').forEach(i=>i.classList.remove('active'));if(btn)btn.classList.add('active');navigateTo(id)}
+function toggleAdminSidebar(){var s=document.getElementById('admin-sidebar');if(s)s.classList.toggle('open')}
+
+// 登录
+var loginRole='user';
+function switchLoginTab(r){loginRole=r;document.querySelectorAll('.login-tab').forEach(t=>t.classList.remove('active'));document.querySelector('[data-role="'+r+'"]').classList.add('active')}
+function handleLogin(e){e.preventDefault();
+  var acc=document.getElementById('login-account').value.trim();
+  var pwd=document.getElementById('login-password').value;
+  if(!acc||!pwd){showToast('请输入账号和密码','error');return;}
+  if(loginRole==='admin'){
+    if(acc!=='admin'||pwd!=='123456'){showToast('管理员账号或密码错误（默认 admin / 123456）','error');return;}
+    navigateTo('page-admin-dashboard');showToast('管理员登录成功','success');
+  }else{
+    var u=registeredUsers.find(function(x){return x.account===acc;});
+    if(!u){showToast('该账号未注册，请先注册','error');return;}
+    if(u.password!==pwd){showToast('密码错误','error');return;}
+    navigateTo('page-user-home');showToast('登录成功，欢迎回来','success');
+  }
+}
+
+// 用户首页
+function renderExamList(f){var c=document.getElementById('exam-list');if(!c)return;var l=examListData;if(f&&f!=='all')l=examListData.filter(e=>e.status===f);c.innerHTML=l.map(e=>{var cls='exam-card glass-card ',badge='';if(e.status==='pending'){cls+='exam-card-pending';badge='<span class="badge badge-blue">待考试</span>'}else if(e.status==='active'){cls+='exam-card-active';badge='<span class="badge badge-green">进行中</span>'}else{cls+='exam-card-done';badge='<span class="badge badge-gray">已完成</span>'}var sc=e.status==='done'?'<span class="exam-card-score numeric text-gradient">'+e.score+'</span>':'';var oc=e.status==='pending'?"navigateTo('page-exam')":e.status==='done'?"navigateTo('page-exam-result')":"navigateTo('page-exam')";return '<div class="'+cls+'" onclick="'+oc+'"><div class="flex items-center justify-between mb-sm"><h3 class="exam-card-title">'+e.title+'</h3>'+badge+'</div><div class="exam-card-meta"><span class="exam-card-meta-item">'+I.clock+e.duration+'</span><span class="exam-card-meta-item">'+I.file+e.questions+'题</span><span class="exam-card-meta-item">'+e.category+'</span><span class="exam-card-meta-item">'+e.deadline+'</span></div>'+sc+'</div>'}).join('');if(l.length===0)c.innerHTML='<div class="text-center" style="padding:var(--space-3xl)"><p class="text-secondary">暂无考试记录</p></div>'}
+function filterExams(b,f){document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));b.classList.add('active');renderExamList(f)}
+function switchTab(b){document.querySelectorAll('.tabbar-item').forEach(t=>t.classList.remove('active'));b.classList.add('active')}
+
+// 考试答题
+var es={cq:0,ans:{},mk:new Set(),tm:2700,iv:null,vi:0};
+function initExam(){es={cq:0,ans:{},mk:new Set(),tm:2700,iv:null,vi:0};document.getElementById('total-q').textContent=examQuestions.length;renderACG();renderQ();startTimer();setTimeout(()=>{if(document.getElementById('page-exam').classList.contains('active')){var ind=document.getElementById('reconnect-indicator');ind.classList.add('show');setTimeout(()=>ind.classList.remove('show'),3000)}},10000)}
+function renderQ(){var q=examQuestions[es.cq];document.getElementById('current-q').textContent=es.cq+1;var tm={single:'单选题',multi:'多选题',judge:'判断题'},tc={single:'badge-blue',multi:'badge-purple',judge:'badge-orange'};document.getElementById('question-type-badge').innerHTML='<span class="badge '+tc[q.type]+'">'+tm[q.type]+'</span>';document.getElementById('question-body').textContent=q.title;var L=['A','B','C','D','E'],mu=q.type==='multi',c=document.getElementById('option-list'),ua=es.ans[es.cq];c.innerHTML=q.options.map((o,i)=>{var sel=mu?(Array.isArray(ua)&&ua.includes(i)):ua===i;var mc=mu?'checkbox':'';return '<div class="option-item '+(sel?'selected':'')+'" onclick="selectOpt('+i+')"><div class="option-marker '+mc+'">'+(sel?(mu?'✓':L[i]):L[i])+'</div><span class="option-text">'+o+'</span></div>'}).join('');renderACG();document.getElementById('btn-prev').style.display=es.cq===0?'none':'flex';var bn=document.getElementById('btn-next');if(es.cq===examQuestions.length-1){bn.innerHTML='提交试卷'+I.check;bn.setAttribute('onclick','submitExam()')}else{bn.innerHTML='下一题<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><polyline points="9 18 15 12 9 6"/></svg>';bn.setAttribute('onclick','changeQuestion(1)')}}
+function selectOpt(i){var q=examQuestions[es.cq];if(q.type==='multi'){var a=es.ans[es.cq]||[];if(!Array.isArray(a))a=[];if(a.includes(i))a=a.filter(x=>x!==i);else a.push(i);es.ans[es.cq]=a}else{es.ans[es.cq]=i}renderQ()}
+function changeQuestion(d){var n=es.cq+d;if(n<0||n>=examQuestions.length)return;es.cq=n;var c=document.querySelector('.exam-content');c.style.animation='none';void c.offsetWidth;c.style.animation='page-transition 0.25s var(--ease-out)';renderQ()}
+function toggleMark(){if(es.mk.has(es.cq))es.mk.delete(es.cq);else es.mk.add(es.cq);renderACG();showToast(es.mk.has(es.cq)?'已标记此题':'已取消标记','info')}
+function renderACG(){var g=document.getElementById('answer-card-grid');g.innerHTML=examQuestions.map((_,i)=>{var c='answer-card-cell';if(es.ans[i]!==undefined&&es.ans[i]!==null)c+=' answered';if(es.mk.has(i))c+=' marked';if(i===es.cq)c+=' current';return '<div class="'+c+'" onclick="jumpQ('+i+')">'+(i+1)+'</div>'}).join('')}
+function jumpQ(i){es.cq=i;renderQ()}
+function startTimer(){if(es.iv)clearInterval(es.iv);updateTimer();es.iv=setInterval(()=>{es.tm--;updateTimer();if(es.tm<=0){clearInterval(es.iv);submitExam()}},1000)}
+function updateTimer(){var d=document.getElementById('timer-display');var m=Math.floor(es.tm/60),s=es.tm%60;d.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');d.classList.remove('timer-safe','timer-caution','timer-danger','timer-critical');if(es.tm>600)d.classList.add('timer-safe');else if(es.tm>300)d.classList.add('timer-caution');else if(es.tm>60)d.classList.add('timer-danger');else d.classList.add('timer-critical')}
+function showAntiCheat(){es.vi++;document.getElementById('violation-count').textContent=es.vi;document.getElementById('anti-cheat-overlay').classList.add('show')}
+function closeAntiCheat(){document.getElementById('anti-cheat-overlay').classList.remove('show');if(es.vi>=3){showToast('违规次数已达上限，自动提交试卷','error');submitExam()}}
+function submitExam(){if(es.iv)clearInterval(es.iv);navigateTo('page-exam-result')}
+
+// 成绩页
+function renderReview(){var c=document.getElementById('review-list');if(!c)return;c.innerHTML=examQuestions.map((q,i)=>{var tm={single:'单选',multi:'多选',judge:'判断'};var ok=i!==0&&i!==3;var ca=Array.isArray(q.answer)?q.answer[0]:q.answer;return '<div class="review-item glass-card"><div class="review-header" onclick="toggleRev(this)"><div class="flex items-center gap-sm"><span class="'+(ok?'badge badge-green':'badge badge-red')+'" style="width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center">'+(ok?'✓':'✕')+'</span>第'+(i+1)+'题 <span class="badge badge-gray">'+tm[q.type]+'</span></div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;transition:transform .25s"><polyline points="6 9 12 15 18 9"/></svg></div><div class="review-detail"><div class="review-detail-inner"><p style="font-size:var(--text-small);margin-bottom:var(--space-sm)">'+q.title+'</p><p style="font-size:var(--text-small);color:var(--color-success);margin-bottom:var(--space-xs)">正确答案：'+(Array.isArray(q.answer)?q.answer.map(a=>q.options[a]).join('、'):q.options[q.answer])+'</p>'+(ok?'':'<p style="font-size:var(--text-small);color:var(--color-danger)">您的答案错误</p>')+'</div></div></div>'}).join('')}
+function toggleRev(h){var d=h.nextElementSibling;var s=h.querySelector('svg');d.classList.toggle('open');s.style.transform=d.classList.contains('open')?'rotate(180deg)':'rotate(0)'}
+function animateScore(){var el=document.getElementById('score-number');var t=85,c=0;var iv=setInterval(()=>{c+=2;if(c>=t){c=t;clearInterval(iv)}el.textContent=c},30);setTimeout(()=>{var r=document.getElementById('ring-progress'),rv=document.getElementById('ring-value'),cir=408,pct=80;r.style.transition='stroke-dashoffset 1s ease';r.style.strokeDashoffset=cir*(1-pct/100);var v=0;var ri=setInterval(()=>{v+=4;if(v>=pct){v=pct;clearInterval(ri)}rv.textContent=v+'%'},40)},300)}
+
+// 计数动画
+function animateCountUp(){document.querySelectorAll('[data-target]').forEach(el=>{var t=parseInt(el.dataset.target),c=0,st=Math.max(1,Math.ceil(t/30));var iv=setInterval(()=>{c+=st;if(c>=t){c=t;clearInterval(iv)}el.textContent=c},30)})}
+
+// Toast
+function showToast(msg,type){var c=document.getElementById('toast-container');var ic={success:I.check,error:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',info:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'};var t=document.createElement('div');t.className='toast '+(type||'info');t.innerHTML=(ic[type]||ic.info)+'<span>'+msg+'</span>';c.appendChild(t);setTimeout(()=>{t.style.animation='toast-slide-out .25s ease forwards';setTimeout(()=>t.remove(),250)},3000)}
+
+// 弹窗
+function showModal(id){buildModals();buildExamModals();var m=document.getElementById(id);if(m)m.classList.add('show')}
+function closeModal(id){var m=document.getElementById(id);if(m)m.classList.remove('show')}
+
+// 图表
+function renderLineChart(id,gid,data,labels,color){var svg=document.getElementById(id);if(!svg)return;var w=340,h=200,pad=30,cw=w-pad*2,ch=h-pad*2;var mx=Math.max(...data)+10,mn=Math.min(...data)-5;var pts=data.map((v,i)=>{var x=pad+(cw/(data.length-1))*i;var y=pad+ch-((v-mn)/(mx-mn))*ch;return{x,y}});var path='M '+pts.map(p=>p.x+' '+p.y).join(' L ');var area=path+' L '+pts[pts.length-1].x+' '+(h-pad)+' L '+pts[0].x+' '+(h-pad)+' Z';var dots=pts.map((p,i)=>'<circle cx="'+p.x+'" cy="'+p.y+'" r="4" class="line-chart-dot" style="fill:'+color+';stroke:var(--glass-bg-2);stroke-width:2;animation-delay:'+(0.8+i*0.1)+'s"/>').join('');var xLabels=labels.map((l,i)=>'<text x="'+pts[i].x+'" y="'+(h-8)+'" text-anchor="middle" class="chart-axis-text">'+l+'</text>').join('');svg.innerHTML='<defs><linearGradient id="'+gid+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+color+'" stop-opacity="0.3"/><stop offset="100%" stop-color="'+color+'" stop-opacity="0"/></linearGradient></defs><path d="'+area+'" fill="url(#'+gid+')" class="line-chart-area"/><path d="'+path+'" class="line-chart-path" style="stroke:'+color+'"/>'+dots+xLabels}
+function renderBarChart(id,data){var c=document.getElementById(id);if(!c)return;var mx=Math.max(...data.map(d=>d.value));c.innerHTML=data.map(d=>'<div class="bar-item"><span class="bar-value">'+d.value+'</span><div class="bar-fill" style="height:0" data-h="'+(d.value/mx*100)+'%"></div><span class="bar-label">'+d.label+'</span></div>').join('');setTimeout(()=>{c.querySelectorAll('.bar-fill').forEach(b=>{b.style.height=b.dataset.h})},100)}
+function renderDonutChart(id,legId,data){var svg=document.getElementById(id);if(!svg)return;var total=data.reduce((s,d)=>s+d.value,0);var cx=90,cy=90,r=65,cir=2*Math.PI*r;var offset=0;var segs=data.map(d=>{var pct=d.value/total;var len=pct*cir;var seg='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="'+d.color+'" stroke-width="20" stroke-linecap="round" stroke-dasharray="'+len+' '+(cir-len)+'" stroke-dashoffset="'+(-offset)+'" transform="rotate(-90 '+cx+' '+cy+')"><animate attributeName="stroke-dasharray" from="0 '+cir+'" to="'+len+' '+(cir-len)+'" dur="0.8s" fill="freeze"/></circle>';offset+=len;return seg}).join('');svg.innerHTML=segs;var leg=document.getElementById(legId);if(leg)leg.innerHTML=data.map(d=>'<div class="legend-item"><span class="legend-dot" style="background:'+d.color+'"></span><span class="legend-label">'+d.label+'</span><span class="legend-value">'+Math.round(d.value/total*100)+'%</span></div>').join('')}
+
+function renderAdminCharts(){var sd=getScopeTrendData();renderLineChart('admin-line-chart','chart-gradient',sd.data,sd.labels,'#5B7CFA');renderBarChart('admin-bar-chart',[{label:'交通管制',value:42},{label:'安全设施',value:35},{label:'桥梁检测',value:28},{label:'路基路面',value:22},{label:'应急处理',value:15},{label:'施工标志',value:8},{label:'人员防护',value:5}]);renderDonutChart('admin-donut-chart','admin-donut-legend',[{label:'安全作业',value:35,color:'#5B7CFA'},{label:'交通管制',value:22,color:'#8B5CF6'},{label:'桥梁检测',value:18,color:'#06B6D4'},{label:'路基路面',value:15,color:'#34D399'},{label:'应急处理',value:10,color:'#FBBF24'}]);var pl=document.getElementById('participation-list');if(pl)pl.innerHTML=[{area:'城南养护工区',rate:92},{area:'城北养护工区',rate:85},{area:'城东养护工区',rate:78},{area:'城西养护工区',rate:88},{area:'高速养护工区',rate:95},{area:'桥梁养护工区',rate:82}].map(p=>'<div style="display:flex;align-items:center;gap:var(--space-sm)"><span style="width:80px;font-size:var(--text-small)">'+p.area+'</span><div style="flex:1;height:8px;background:var(--bg-input);border-radius:var(--radius-full);overflow:hidden"><div style="height:100%;width:'+p.rate+'%;background:var(--accent-gradient);border-radius:var(--radius-full);transition:width .8s ease"></div></div><span class="numeric" style="font-size:var(--text-small);font-weight:var(--font-semibold);min-width:36px;text-align:right">'+p.rate+'%</span></div>').join('')}
+function renderPersonalCharts(){renderLineChart('personal-line-chart','personal-chart-gradient',[75,82,68,90,78,85],['第1次','第2次','第3次','第4次','第5次','第6次'],'#8B5CF6');renderBarChart('personal-bar-chart',[{label:'交通管制',value:5},{label:'安全设施',value:3},{label:'桥梁检测',value:2},{label:'路基路面',value:1},{label:'应急处理',value:1},{label:'施工标志',value:0},{label:'人员防护',value:0}]);renderDonutChart('personal-donut-chart','personal-donut-legend',[{label:'安全作业',value:40,color:'#8B5CF6'},{label:'交通管制',value:25,color:'#5B7CFA'},{label:'桥梁检测',value:15,color:'#06B6D4'},{label:'路基路面',value:12,color:'#34D399'},{label:'应急处理',value:8,color:'#FBBF24'}])}
+
+// 管理员页面构建
+function buildAdminDashboard(){document.getElementById('page-admin-dashboard').innerHTML='<div class="admin-layout">'+buildSidebar('page-admin-dashboard')+'<main class="admin-main">'+buildTopbar('控制台','欢迎使用养护工区考试管理系统')+'<div class="stats-grid"><div class="stat-card glass-card"><div class="stat-card-icon" style="background:var(--color-info-bg)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--color-info)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><div class="stat-card-value numeric" data-target="48">0</div><div class="stat-card-label">总考试数</div><div class="stat-card-trend" style="color:var(--color-success)">'+I.trending+'+12% 较上月</div></div><div class="stat-card glass-card"><div class="stat-card-icon" style="background:rgba(139,92,246,.15)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="stat-card-value numeric" data-target="326">0</div><div class="stat-card-label">注册用户数</div><div class="stat-card-trend" style="color:var(--color-success)">'+I.trending+'+8% 较上月</div></div><div class="stat-card glass-card"><div class="stat-card-icon" style="background:var(--color-success-bg)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="stat-card-value numeric" data-target="87">0</div><div class="stat-card-label">今日活跃用户</div><div class="stat-card-trend" style="color:var(--color-success)">'+I.trending+'+24% 较昨日</div></div><div class="stat-card glass-card"><div class="stat-card-icon" style="background:var(--color-warning-bg)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--color-warning)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="stat-card-value numeric" data-target="82">0</div><div class="stat-card-label">平均分</div><div class="stat-card-trend" style="color:var(--color-danger)">'+I.trending+'-3% 较上月</div></div></div><h3 style="font-size:var(--text-h4);font-weight:var(--font-semibold);margin-bottom:var(--space-md)">快捷操作</h3><div class="quick-actions"><div class="quick-action" onclick="navigateTo(\'page-exam-management\')"><div class="quick-action-icon" style="background:var(--color-info-bg)">'+I.plus+'</div><span class="quick-action-label">发布考试</span></div><div class="quick-action" onclick="navigateTo(\'page-question-bank\')"><div class="quick-action-icon" style="background:rgba(139,92,246,.15)">'+I.question+'</div><span class="quick-action-label">录入题目</span></div><div class="quick-action" onclick="navigateTo(\'page-user-management\')"><div class="quick-action-icon" style="background:var(--color-success-bg)">'+I.usersPlus+'</div><span class="quick-action-label">导入用户</span></div><div class="quick-action" onclick="navigateTo(\'page-admin-analytics\')"><div class="quick-action-icon" style="background:var(--color-warning-bg)">'+I.download+'</div><span class="quick-action-label">导出数据</span></div></div><h3 style="font-size:var(--text-h4);font-weight:var(--font-semibold);margin-bottom:var(--space-md)">最近活动</h3><div class="activity-timeline glass-card"><div class="activity-item"><div class="activity-dot" style="background:var(--color-success)"></div><div class="activity-content"><div class="activity-text">王建国 完成了「公路养护安全作业规范考试」，得分 85 分</div><div class="activity-time">5 分钟前</div></div></div><div class="activity-item"><div class="activity-dot" style="background:var(--accent-blue)"></div><div class="activity-content"><div class="activity-text">管理员发布了新考试「桥梁检测技术规范考核」</div><div class="activity-time">23 分钟前</div></div></div><div class="activity-item"><div class="activity-dot" style="background:var(--accent-purple)"></div><div class="activity-content"><div class="activity-text">题库新增 15 道「路基路面养护」相关题目</div><div class="activity-time">1 小时前</div></div></div><div class="activity-item"><div class="activity-dot" style="background:var(--color-warning)"></div><div class="activity-content"><div class="activity-text">李明 提交了考试，检测到 1 次切屏行为</div><div class="activity-time">2 小时前</div></div></div><div class="activity-item"><div class="activity-dot" style="background:var(--color-info)"></div><div class="activity-content"><div class="activity-text">系统完成自动备份，备份文件大小 24.6 MB</div><div class="activity-time">今天 03:00</div></div></div><div class="activity-item"><div class="activity-dot" style="background:var(--text-tertiary)"></div><div class="activity-content"><div class="activity-text">新增用户 12 人（城北养护工区批量导入）</div><div class="activity-time">昨天 16:30</div></div></div></div></main></div>'}
+
+function buildQuestionBankPage(){document.getElementById('page-question-bank').innerHTML='<div class="admin-layout">'+buildSidebar('page-question-bank')+'<main class="admin-main">'+buildTopbar('题库管理','共 186 道题目 · 覆盖 8 个知识分类','<button class="btn btn-glass btn-sm" onclick="showModal(\'import-modal\')">'+I.upload+'批量导入</button><button class="btn btn-primary btn-sm" onclick="showModal(\'question-edit-modal\')">'+I.plus+'新增题目</button>')+'<div class="filter-toolbar"><div class="search-wrapper">'+I.search+'<input type="text" placeholder="搜索题目关键词..."></div><select class="select-pill"><option>全部分类</option><option>安全作业规范</option><option>路基路面养护</option><option>桥梁检测维护</option><option>交通管制</option></select><select class="select-pill"><option>全部难度</option><option>简单</option><option>中等</option><option>困难</option></select><select class="select-pill"><option>全部类型</option><option>单选题</option><option>多选题</option><option>判断题</option></select></div><div class="data-table-wrapper glass-card"><table class="data-table"><thead><tr><th style="width:40px"><input type="checkbox" style="accent-color:var(--accent-blue)"></th><th>题目内容</th><th>类型</th><th>难度</th><th>分类</th><th>使用次数</th><th>操作</th></tr></thead><tbody id="qbank-tbody"></tbody></table><div class="pagination"><span class="pagination-info">共 186 条 · 第 1/10 页</span><div class="pagination-buttons"><button class="btn btn-glass btn-sm" disabled>上一页</button><button class="btn btn-glass btn-sm">下一页</button></div></div></div></main></div>';renderQBank()}
+function renderQBank(){var tb=document.getElementById('qbank-tbody');if(!tb)return;var dm={简单:'badge-green',中等:'badge-orange',困难:'badge-red'},tc={单选:'badge-blue',多选:'badge-purple',判断:'badge-orange'};tb.innerHTML=questionBankData.map(q=>'<tr><td><input type="checkbox" style="accent-color:var(--accent-blue)"></td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+q.preview+'</td><td><span class="badge '+tc[q.type]+'">'+q.type+'</span></td><td><span class="badge '+dm[q.difficulty]+'">'+q.difficulty+'</span></td><td>'+q.category+'</td><td class="numeric">'+q.uses+'</td><td><div class="table-actions"><button class="table-action-btn" onclick="showModal(\'question-edit-modal\')">'+I.edit+'</button><button class="table-action-btn" onclick="showToast(\'已删除题目\',\'info\')">'+I.trash+'</button></div></td></tr>').join('')}
+
+
+// ===== v2.1 管理员趋势范围（全员/按工区/单个用户） =====
+var adminScope='all';var adminScopeVal='';
+var zoneTrend={'城南养护工区':[80,83,78,85,82,88,84],'城北养护工区':[75,72,78,80,76,82,79],'城东养护工区':[70,74,72,76,73,78,75],'城西养护工区':[68,71,69,73,70,75,72],'高速养护工区':[85,88,83,90,86,92,89],'桥梁养护工区':[82,85,80,87,83,89,86]};
+var userTrend={};
+function _mockSeries(avg){var arr=[];var seed=avg;for(var k=0;k<7;k++){seed=(seed*9301+49297)%233280;var r=seed/233280;var v=Math.round(avg-9+r*18);if(v<40)v=40;if(v>100)v=100;arr.push(v);}return arr;}
+userData.forEach(function(u){userTrend[u.id]=_mockSeries(u.avg);});
+var WEEK_LABELS=['周一','周二','周三','周四','周五','周六','周日'];
+function getScopeTrendData(){if(adminScope==='zone'){return{data:zoneTrend[adminScopeVal]||[72,78,75,82,80,85,83],labels:WEEK_LABELS};}if(adminScope==='user'){return{data:userTrend[adminScopeVal]||[72,78,75,82,80,85,83],labels:WEEK_LABELS};}return{data:[72,78,75,82,80,85,83],labels:WEEK_LABELS};}
+function setAdminScope(scope,btn){adminScope=scope;document.querySelectorAll('.scope-tab').forEach(function(b){b.classList.remove('active');});if(btn)btn.classList.add('active');var sel=document.getElementById('scope-select');if(scope==='all'){sel.style.display='none';}else{sel.style.display='inline-block';if(scope==='zone'){sel.innerHTML=['城南养护工区','城北养护工区','城东养护工区','城西养护工区','高速养护工区','桥梁养护工区'].map(function(z){return '<option value="'+z+'">'+z+'</option>';}).join('');}else{sel.innerHTML=userData.map(function(u){return '<option value="'+u.id+'">'+u.name+'（'+u.id+'·'+u.area+'）</option>';}).join('');}adminScopeVal=sel.value;}renderAdminCharts();}
+function onScopeSelectChange(){var sel=document.getElementById('scope-select');adminScopeVal=sel.value;renderAdminCharts();}
+function exportAdminExcel(){var sd=getScopeTrendData();var scopeName=adminScope==='all'?'全员':(adminScope==='zone'?adminScopeVal:'用户'+(userData.filter(function(u){return u.id===adminScopeVal;})[0]||{name:adminScopeVal}).name);var rows=[['维度','平均分']];sd.labels.forEach(function(l,i){rows.push([l,sd.data[i]]);});try{if(typeof XLSX!=='undefined'){var ws=XLSX.utils.aoa_to_sheet(rows);var wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'趋势-'+scopeName);XLSX.writeFile(wb,'成绩趋势_'+scopeName+'.xlsx');}else{throw new Error('no-xlsx');}}catch(e){var csv='﻿'+rows.map(function(r){return r.join(',');}).join('\n');var blob=new Blob([csv],{type:'text/csv;charset=utf-8'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='成绩趋势_'+scopeName+'.csv';a.click();}showToast('已导出：'+scopeName+' 趋势数据','success');}
+
+
+// v2.1 注入范围切换控件
+function initAdminScope(){
+  var main=document.querySelector('#page-admin-analytics .admin-main');
+  if(!main||document.getElementById('scope-bar'))return;
+  var bar=document.createElement('div');
+  bar.id='scope-bar';bar.className='scope-bar';
+  bar.innerHTML='<div class="scope-tabs">'
+    +'<button class="scope-tab active" onclick="setAdminScope(\'all\',this)">全员</button>'
+    +'<button class="scope-tab" onclick="setAdminScope(\'zone\',this)">按工区</button>'
+    +'<button class="scope-tab" onclick="setAdminScope(\'user\',this)">单个用户</button>'
+    +'</div><select id="scope-select" class="select-pill" style="display:none" onchange="onScopeSelectChange()"></select>';
+  var grid=main.querySelector('.chart-grid');
+  if(grid)main.insertBefore(bar,grid);
+}
+function buildAdminAnalyticsPage(){document.getElementById('page-admin-analytics').innerHTML='<div class="admin-layout">'+buildSidebar('page-admin-analytics')+'<main class="admin-main">'+buildTopbar('数据统计分析','全局考试数据分析与洞察','<select class="select-pill"><option>最近 7 天</option><option>最近 30 天</option><option>最近 3 个月</option><option>全部时间</option></select><button class="btn btn-glass btn-sm" onclick="exportAdminExcel()">'+I.download+'导出</button>')+'<div class="chart-grid"><div class="chart-card glass-card"><h3 class="chart-card-title">成绩趋势</h3><p class="chart-card-subtitle">近 7 天平均分变化</p><svg class="line-chart-svg" viewBox="0 0 340 200" id="admin-line-chart"></svg></div><div class="chart-card glass-card"><h3 class="chart-card-title">错题集中分布</h3><p class="chart-card-subtitle">按知识点统计错题数量</p><div class="bar-chart" id="admin-bar-chart"></div></div><div class="chart-card glass-card"><h3 class="chart-card-title">知识点掌握情况</h3><p class="chart-card-subtitle">各知识分类平均正确率</p><div class="flex items-center gap-lg" style="flex-wrap:wrap"><svg class="donut-chart-svg" viewBox="0 0 180 180" id="admin-donut-chart"></svg><div class="chart-legend" style="flex:1;min-width:140px" id="admin-donut-legend"></div></div></div><div class="chart-card glass-card"><h3 class="chart-card-title">考试参与率</h3><p class="chart-card-subtitle">按工区统计考试完成情况</p><div id="participation-list" style="display:flex;flex-direction:column;gap:var(--space-sm);margin-top:var(--space-md)"></div></div></div><div class="data-table-wrapper glass-card"><div style="padding:var(--space-lg);padding-bottom:0"><h3 style="font-size:var(--text-h4);font-weight:var(--font-semibold)">考试数据明细</h3></div><table class="data-table"><thead><tr><th>考试名称</th><th>参与人数</th><th>平均分</th><th>通过率</th><th>最高分</th><th>最低分</th></tr></thead><tbody><tr><td>公路养护安全作业规范</td><td>45</td><td class="numeric">82.3</td><td><span class="badge badge-green">91%</span></td><td class="numeric">98</td><td class="numeric">56</td></tr><tr><td>桥梁检测技术规范</td><td>38</td><td class="numeric">76.8</td><td><span class="badge badge-orange">78%</span></td><td class="numeric">95</td><td class="numeric">42</td></tr><tr><td>路基路面养护标准</td><td>52</td><td class="numeric">85.1</td><td><span class="badge badge-green">94%</span></td><td class="numeric">100</td><td class="numeric">61</td></tr><tr><td>交通管制作业规程</td><td>41</td><td class="numeric">71.2</td><td><span class="badge badge-orange">68%</span></td><td class="numeric">92</td><td class="numeric">38</td></tr><tr><td>冬季除雪保通预案</td><td>33</td><td class="numeric">88.6</td><td><span class="badge badge-green">97%</span></td><td class="numeric">100</td><td class="numeric">72</td></tr></tbody></table></div></main></div>'}
+
+function buildPersonalAnalyticsPage(){document.getElementById('page-personal-analytics').innerHTML='<nav class="user-topbar glass-nav"><button class="btn btn-ghost btn-icon" onclick="navigateTo(\'page-user-home\')">'+I.back+'</button><span style="font-size:var(--text-h4);font-weight:var(--font-semibold)">成绩分析</span><div style="width:40px"></div></nav><div class="result-container"><div class="score-hero glass-card" style="padding:var(--space-lg)"><div class="flex items-center justify-between" style="flex-wrap:wrap;gap:var(--space-md)"><div><p class="text-secondary" style="font-size:var(--text-small)">历史平均分</p><div class="numeric" style="font-size:var(--text-h1);font-weight:var(--font-heavy)">83.5</div></div><div><p class="text-secondary" style="font-size:var(--text-small)">已完成考试</p><div class="numeric" style="font-size:var(--text-h1);font-weight:var(--font-heavy)">12</div></div><div><p class="text-secondary" style="font-size:var(--text-small)">通过率</p><div class="numeric" style="font-size:var(--text-h1);font-weight:var(--font-heavy);color:var(--color-success)">92%</div></div></div></div><div class="chart-grid" style="grid-template-columns:1fr"><div class="chart-card glass-card"><h3 class="chart-card-title">成绩趋势</h3><p class="chart-card-subtitle">最近 6 次考试成绩变化</p><svg class="line-chart-svg" viewBox="0 0 340 200" id="personal-line-chart"></svg></div><div class="chart-card glass-card"><h3 class="chart-card-title">知识点掌握</h3><p class="chart-card-subtitle">各知识分类正确率分布</p><div class="flex items-center gap-lg" style="flex-wrap:wrap"><svg class="donut-chart-svg" viewBox="0 0 180 180" id="personal-donut-chart"></svg><div class="chart-legend" style="flex:1;min-width:140px" id="personal-donut-legend"></div></div></div><div class="chart-card glass-card"><h3 class="chart-card-title">错题分布</h3><p class="chart-card-subtitle">按知识点统计个人错题数量</p><div class="bar-chart" id="personal-bar-chart"></div></div></div></div><nav class="tabbar glass-nav"><button class="tabbar-item" onclick="switchTab(this);navigateTo(\'page-user-home\')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>首页</span></button><button class="tabbar-item active" onclick="switchTab(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span>成绩</span></button><button class="tabbar-item" onclick="switchTab(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>我的</span></button></nav>'}
+
+function buildExamMgmtPage(){
+  var rows=exams.map(function(e){
+    var st={active:['进行中','badge-green'],pending:['待开始','badge-blue'],done:['已结束','badge-gray']}[e.status]||['未知','badge-gray'];
+    return '<tr>'+
+      '<td style="font-weight:var(--font-semibold)">'+e.title+'</td>'+
+      '<td class="numeric">'+e.questions+'</td>'+
+      '<td>'+e.duration+'</td>'+
+      '<td class="numeric">'+e.participants+'</td>'+
+      '<td><span class="badge '+st[1]+'">'+st[0]+'</span></td>'+
+      '<td class="numeric">'+e.createdAt+'</td>'+
+      '<td><div class="table-actions">'+
+        '<button class="table-action-btn" title="查看" onclick="viewExam('+e.id+')">'+I.file+'</button>'+
+        '<button class="table-action-btn" title="编辑" onclick="editExam('+e.id+')">'+I.edit+'</button>'+
+        '<button class="table-action-btn" title="删除" onclick="deleteExam('+e.id+')">'+I.trash+'</button>'+
+        '<button class="table-action-btn" title="导出成绩(Excel)" onclick="exportExamScores('+e.id+')">'+I.download+'</button>'+
+      '</div></td>'+
+    '</tr>';
+  }).join('');
+  document.getElementById('page-exam-management').innerHTML=
+    '<div class="admin-layout">'+buildSidebar('page-exam-management')+'<main class="admin-main">'+
+    buildTopbar('考试发布与管理','创建新考试并管理已发布考试','<button class="btn btn-primary btn-sm" onclick="openExamWizard()">'+I.plus+'创建考试</button>')+
+    '<div class="data-table-wrapper glass-card"><table class="data-table"><thead><tr><th>考试名称</th><th>题目数</th><th>时长</th><th>参与人数</th><th>状态</th><th>创建时间</th><th>操作</th></tr></thead><tbody>'+rows+'</tbody></table></div>'+
+    '</main></div>';
+}
+
+function buildUserMgmtPage(){document.getElementById('page-user-management').innerHTML='<div class="admin-layout">'+buildSidebar('page-user-management')+'<main class="admin-main">'+buildTopbar('用户管理','按工区管理用户账号','<button class="btn btn-glass btn-sm" onclick="showModal(\'user-import-modal\')">'+I.upload+'批量导入</button><button class="btn btn-primary btn-sm" onclick="showModal(\'user-edit-modal\')">'+I.plus+'新增用户</button>')+'<div class="user-mgmt-layout"><div class="tree-nav glass-card"><div class="tree-nav-title">工区导航</div><div class="tree-item active">'+I.file+' 全部用户<span class="tree-count">326</span></div><div class="tree-children"><div class="tree-item">'+I.file+' 城南养护工区<span class="tree-count">58</span></div><div class="tree-item">'+I.file+' 城北养护工区<span class="tree-count">62</span></div><div class="tree-item">'+I.file+' 城东养护工区<span class="tree-count">45</span></div><div class="tree-item">'+I.file+' 城西养护工区<span class="tree-count">51</span></div><div class="tree-item">'+I.file+' 高速养护工区<span class="tree-count">68</span></div><div class="tree-item">'+I.file+' 桥梁养护工区<span class="tree-count">42</span></div></div></div><div class="data-table-wrapper glass-card" style="flex:1"><table class="data-table"><thead><tr><th>姓名</th><th>工号</th><th>工区</th><th>角色</th><th>考试次数</th><th>平均分</th><th>操作</th></tr></thead><tbody id="user-tbody"></tbody></table></div></div></main></div>';renderUTable()}
+function renderUTable(){var tb=document.getElementById('user-tbody');if(!tb)return;tb.innerHTML=userData.map(u=>'<tr><td>'+u.name+'</td><td class="numeric">'+u.id+'</td><td>'+u.area+'</td><td><span class="badge badge-blue">'+u.role+'</span></td><td class="numeric">'+u.exams+'</td><td class="numeric">'+u.avg+'</td><td><div class="table-actions"><button class="table-action-btn" onclick="showModal(\'user-edit-modal\')">'+I.edit+'</button><button class="table-action-btn" onclick="showToast(\'已删除用户\',\'info\')">'+I.trash+'</button></div></td></tr>').join('')}
+
+function buildSettingsPage(){document.getElementById('page-settings').innerHTML='<div class="admin-layout">'+buildSidebar('page-settings')+'<main class="admin-main">'+buildTopbar('系统设置','管理系统参数、数据备份与安全设置')+'<div style="max-width:720px"><div class="settings-section glass-card"><h3 class="settings-section-title">系统参数</h3><p class="settings-section-desc">配置考试系统基本运行参数</p><div class="settings-row"><div><div class="settings-row-label">默认考试时长</div><div class="settings-row-desc">新创建考试的默认时长（分钟）</div></div><input type="text" class="input-field" style="width:80px;text-align:center" value="45"></div><div class="settings-row"><div><div class="settings-row-label">及格分数线</div><div class="settings-row-desc">低于此分数判定为不通过</div></div><input type="text" class="input-field" style="width:80px;text-align:center" value="60"></div><div class="settings-row"><div><div class="settings-row-label">允许切屏次数</div><div class="settings-row-desc">超过此次数自动提交试卷</div></div><input type="text" class="input-field" style="width:80px;text-align:center" value="3"></div><div class="settings-row"><div><div class="settings-row-label">随机抽题</div><div class="settings-row-desc">每位考生题目顺序随机</div></div><div class="toggle on" onclick="this.classList.toggle(\'on\')"></div></div></div><div class="settings-section glass-card"><h3 class="settings-section-title">数据备份</h3><p class="settings-section-desc">管理系统数据备份与恢复</p><div class="settings-row"><div><div class="settings-row-label">自动备份</div><div class="settings-row-desc">每日凌晨3点自动备份系统数据</div></div><div class="toggle on" onclick="this.classList.toggle(\'on\')"></div></div><div class="settings-row"><div><div class="settings-row-label">上次备份时间</div><div class="settings-row-desc">2026-07-15 03:00:00 · 24.6 MB</div></div><span class="badge badge-green">成功</span></div><div class="settings-row"><div><div class="settings-row-label">手动备份</div><div class="settings-row-desc">立即创建系统数据备份</div></div><button class="btn btn-glass btn-sm" onclick="showModal(\'backup-confirm-modal\')">'+I.download+'立即备份</button></div></div><div class="settings-section glass-card"><h3 class="settings-section-title">安全设置</h3><p class="settings-section-desc">配置系统安全策略</p><div class="settings-row"><div><div class="settings-row-label">强制 HTTPS</div><div class="settings-row-desc">所有连接必须使用 HTTPS 协议</div></div><div class="toggle on" onclick="this.classList.toggle(\'on\')"></div></div><div class="settings-row"><div><div class="settings-row-label">密码复杂度检查</div><div class="settings-row-desc">新密码必须包含大小写字母和数字</div></div><div class="toggle on" onclick="this.classList.toggle(\'on\')"></div></div><div class="settings-row"><div><div class="settings-row-label">登录失败锁定</div><div class="settings-row-desc">连续5次登录失败后锁定账号30分钟</div></div><div class="toggle on" onclick="this.classList.toggle(\'on\')"></div></div><div class="settings-row"><div><div class="settings-row-label">考试全屏模式</div><div class="settings-row-desc">考试时强制进入全屏模式</div></div><div class="toggle" onclick="this.classList.toggle(\'on\')"></div></div></div></div></main></div>'}
+
+// 弹窗构建
+function buildModals(){var c=document.getElementById('modal-container');if(c.children.length>0)return;c.innerHTML=
+'<div class="modal-backdrop" id="import-modal"><div class="modal glass-modal"><div class="modal-header"><h3 class="modal-title">批量导入题目</h3><button class="modal-close" onclick="closeModal(\'import-modal\')">'+I.close+'</button></div><div class="upload-zone"><div class="upload-zone-icon">'+I.upload+'</div><p style="font-size:var(--text-body);font-weight:var(--font-medium);margin-bottom:var(--space-xs)">点击或拖拽文件到此处上传</p><p class="text-secondary" style="font-size:var(--text-small)">支持 Excel (.xlsx) 和 CSV 格式</p></div><div style="margin-top:var(--space-lg);padding:var(--space-md);background:var(--color-info-bg);border-radius:var(--radius-md);font-size:var(--text-small);color:var(--color-info)"><strong>模板下载：</strong>请先下载标准导入模板，按格式填写后上传</div><div class="modal-footer"><button class="btn btn-glass" onclick="closeModal(\'import-modal\')">'+I.download+'下载模板</button><button class="btn btn-primary" onclick="closeModal(\'import-modal\');showToast(\'导入成功，新增 15 道题目\',\'success\')">确认导入</button></div></div></div>'+
+'<div class="modal-backdrop" id="question-edit-modal"><div class="modal glass-modal large"><div class="modal-header"><h3 class="modal-title">编辑题目</h3><button class="modal-close" onclick="closeModal(\'question-edit-modal\')">'+I.close+'</button></div><div class="input-group"><label class="input-label">题目类型</label><select class="input-field"><option>单选题</option><option>多选题</option><option>判断题</option></select></div><div class="input-group"><label class="input-label">题干</label><textarea class="input-field" rows="3" placeholder="请输入题目内容"></textarea></div><div class="input-group"><label class="input-label">选项A</label><input type="text" class="input-field" placeholder="请输入选项A内容"></div><div class="input-group"><label class="input-label">选项B</label><input type="text" class="input-field" placeholder="请输入选项B内容"></div><div class="input-group"><label class="input-label">选项C</label><input type="text" class="input-field" placeholder="请输入选项C内容"></div><div class="input-group"><label class="input-label">选项D</label><input type="text" class="input-field" placeholder="请输入选项D内容"></div><div class="input-group"><label class="input-label">正确答案</label><input type="text" class="input-field" placeholder="如：A 或 A,B,C"></div><div class="flex gap-md" style="margin-bottom:var(--space-lg)"><div class="input-group flex-1"><label class="input-label">难度</label><select class="input-field"><option>简单</option><option>中等</option><option>困难</option></select></div><div class="input-group flex-1"><label class="input-label">分类</label><select class="input-field"><option>安全作业</option><option>桥梁检测</option><option>路基路面</option><option>交通管制</option></select></div></div><div class="modal-footer"><button class="btn btn-glass" onclick="closeModal(\'question-edit-modal\')">取消</button><button class="btn btn-primary" onclick="closeModal(\'question-edit-modal\');showToast(\'题目已保存\',\'success\')">保存</button></div></div></div>'+
+'<div class="modal-backdrop" id="user-edit-modal"><div class="modal glass-modal"><div class="modal-header"><h3 class="modal-title">编辑用户</h3><button class="modal-close" onclick="closeModal(\'user-edit-modal\')">'+I.close+'</button></div><div class="input-group"><label class="input-label">姓名</label><input type="text" class="input-field" placeholder="请输入姓名"></div><div class="input-group"><label class="input-label">工号</label><input type="text" class="input-field" placeholder="请输入工号"></div><div class="input-group"><label class="input-label">所属工区</label><select class="input-field"><option>城南养护工区</option><option>城北养护工区</option><option>城东养护工区</option><option>城西养护工区</option><option>高速养护工区</option><option>桥梁养护工区</option></select></div><div class="input-group"><label class="input-label">角色</label><select class="input-field"><option>养护工</option><option>班组长</option><option>技术员</option></select></div><div class="input-group"><label class="input-label">初始密码</label><input type="text" class="input-field" value="123456" placeholder="默认密码"></div><div class="modal-footer"><button class="btn btn-glass" onclick="closeModal(\'user-edit-modal\')">取消</button><button class="btn btn-primary" onclick="closeModal(\'user-edit-modal\');showToast(\'用户信息已保存\',\'success\')">保存</button></div></div></div>'+
+'<div class="modal-backdrop" id="user-import-modal"><div class="modal glass-modal"><div class="modal-header"><h3 class="modal-title">批量导入用户</h3><button class="modal-close" onclick="closeModal(\'user-import-modal\')">'+I.close+'</button></div><div class="upload-zone"><div class="upload-zone-icon">'+I.upload+'</div><p style="font-size:var(--text-body);font-weight:var(--font-medium);margin-bottom:var(--space-xs)">点击或拖拽文件到此处上传</p><p class="text-secondary" style="font-size:var(--text-small)">支持 Excel (.xlsx) 和 CSV 格式</p></div><div class="modal-footer"><button class="btn btn-glass" onclick="closeModal(\'user-import-modal\')">取消</button><button class="btn btn-primary" onclick="closeModal(\'user-import-modal\');showToast(\'导入成功，新增 12 个用户\',\'success\')">确认导入</button></div></div></div>'+
+'<div class="modal-backdrop" id="backup-confirm-modal"><div class="modal glass-modal" style="max-width:400px"><div class="modal-header"><h3 class="modal-title">确认备份</h3><button class="modal-close" onclick="closeModal(\'backup-confirm-modal\')">'+I.close+'</button></div><p class="text-secondary" style="font-size:var(--text-small);margin-bottom:var(--space-lg)">系统将立即创建完整数据备份，备份过程中系统将暂停写入操作，预计需要 1-2 分钟。</p><div style="padding:var(--space-md);background:var(--color-warning-bg);border-radius:var(--radius-md);font-size:var(--text-small);color:var(--color-warning);margin-bottom:var(--space-lg)">备份期间请勿关闭浏览器窗口</div><div class="modal-footer"><button class="btn btn-glass" onclick="closeModal(\'backup-confirm-modal\')">取消</button><button class="btn btn-primary" onclick="closeModal(\'backup-confirm-modal\');showToast(\'备份完成，文件大小 25.2 MB\',\'success\')">开始备份</button></div></div></div>'}
+
+// 初始化
+
+function editExam(id){openExamWizard(id);}
+function row(k,v){return '<div class="detail-row"><span class="k">'+k+'</span><span class="v">'+v+'</span></div>';}
+function openExamWizard(examId){
+  editingExamId=examId||null;
+  document.getElementById('wizard-title').textContent=examId?'编辑考试':'创建考试';
+  var ex=examId?exams.find(function(x){return x.id===examId;}):null;
+  document.getElementById('wizard-name').value=ex?ex.title:'';
+  document.getElementById('wizard-duration').value=ex?parseInt(ex.duration):45;
+  document.getElementById('wizard-deadline').value=ex?ex.deadline:'';
+  document.getElementById('wizard-banks').innerHTML=questionBanks.map(function(b){var chk=ex&&ex.banks&&ex.banks.indexOf(b.id)>=0?'checked':'';return '<label class="bank-chip"><input type="checkbox" value="'+b.id+'" '+chk+'> '+b.name+'（'+b.questions.length+'题）</label>';}).join('');
+  if(ex&&ex.typeConfig){
+    document.getElementById('tc-single-count').value=ex.typeConfig.single.count;document.getElementById('tc-single-score').value=ex.typeConfig.single.score;
+    document.getElementById('tc-multi-count').value=ex.typeConfig.multi.count;document.getElementById('tc-multi-score').value=ex.typeConfig.multi.score;
+    document.getElementById('tc-judge-count').value=ex.typeConfig.judge.count;document.getElementById('tc-judge-score').value=ex.typeConfig.judge.score;
+  }else{
+    ['single','multi','judge'].forEach(function(t){document.getElementById('tc-'+t+'-count').value=t==='single'?6:2;document.getElementById('tc-'+t+'-score').value=t==='single'?5:10;});
+  }
+  showModal('exam-wizard-modal');
+}
+function saveExamWizard(){
+  var name=document.getElementById('wizard-name').value.trim();
+  if(!name){showToast('请输入考试名称','error');return;}
+  var duration=parseInt(document.getElementById('wizard-duration').value)||45;
+  var deadline=document.getElementById('wizard-deadline').value.trim();
+  var banks=Array.prototype.slice.call(document.querySelectorAll('#wizard-banks input:checked')).map(function(c){return c.value;});
+  if(banks.length===0){showToast('请至少选择一个题库','error');return;}
+  var types=['single','multi','judge'],labels={single:'单选题',multi:'多选题',judge:'判断题'},total=0,typeConfig={};
+  for(var i=0;i<types.length;i++){var t=types[i];var c=parseInt(document.getElementById('tc-'+t+'-count').value)||0;var sc=parseFloat(document.getElementById('tc-'+t+'-score').value);
+    if(isNaN(sc)||sc<0.1){showToast(labels[t]+'分值不能低于 0.1','error');return;}
+    typeConfig[t]={count:c,score:sc};total+=c;}
+  if(total===0){showToast('题目总数不能为 0','error');return;}
+  if(editingExamId){
+    var ex=exams.find(function(x){return x.id===editingExamId;});
+    ex.title=name;ex.duration=duration+'分钟';ex.deadline=deadline;ex.banks=banks;ex.typeConfig=typeConfig;ex.questions=total;
+    showToast('考试已更新','success');
+  }else{
+    var nid=exams.reduce(function(m,x){return Math.max(m,x.id);},0)+1;
+    var ne={id:nid,title:name,questions:total,duration:duration+'分钟',participants:Math.floor(20+Math.random()*40),status:'pending',createdAt:'2026-07-20',banks:banks,typeConfig:typeConfig,deadline:deadline};
+    ne.scores=buildScores(ne);exams.push(ne);showToast('考试已创建','success');
+  }
+  buildExamMgmtPage();closeModal('exam-wizard-modal');
+}
+function deleteExam(id){
+  var ex=exams.find(function(x){return x.id===id;});if(!ex)return;
+  pendingDeleteId=id;
+  var nm=document.getElementById('exam-delete-name');if(nm)nm.textContent=ex.title;
+  showModal('exam-delete-modal');
+}
+function doDeleteExam(){
+  if(!pendingDeleteId)return;
+  exams=exams.filter(function(x){return x.id!==pendingDeleteId;});
+  pendingDeleteId=null;
+  buildExamMgmtPage();closeModal('exam-delete-modal');showToast('考试已删除','info');
+}
+function viewExam(id){
+  var ex=exams.find(function(x){return x.id===id;});if(!ex)return;
+  var banks=ex.banks.map(function(bid){var b=questionBanks.find(function(x){return x.id===bid;});return b?b.name:'?';}).join('、');
+  var avg=(ex.scores.reduce(function(s,r){return s+r.score;},0)/(ex.scores.length||1)).toFixed(1);
+  document.getElementById('view-exam-body').innerHTML=
+    '<div class="detail-list">'+
+    row('考试名称',ex.title)+row('状态',ex.status)+row('题目数',ex.questions)+row('时长',ex.duration)+
+    row('参与人数',ex.participants)+row('平均分',avg)+row('选择题库',banks)+
+    '<div style="margin-top:var(--space-md)"><button class="btn btn-primary w-full" onclick="exportExamScores('+ex.id+')">'+I.download+' 导出成绩（Excel）</button></div>'+
+    '</div>';
+  document.getElementById('view-exam-title').textContent=ex.title;
+  showModal('view-exam-modal');
+}
+function exportExamScores(id){
+  var ex=exams.find(function(x){return x.id===id;});if(!ex){showToast('考试不存在','error');return;}
+  var header=['工号','姓名','所属工区','正确题数','成绩','用时','提交时间'];
+  var rows=ex.scores.map(function(r){return [r.no,r.name,r.area,r.correct,r.score,r.time,r.submitted];});
+  var fname=ex.title+'_成绩';
+  if(window.XLSX){
+    var ws=window.XLSX.utils.aoa_to_sheet([header].concat(rows));
+    var wb=window.XLSX.utils.book_new();window.XLSX.utils.book_append_sheet(wb,ws,'成绩');
+    window.XLSX.writeFile(wb,fname+'.xlsx');showToast('成绩已导出为 Excel','success');
+  }else{
+    var csv='﻿'+header.join(',')+'\n'+rows.map(function(r){return r.join(',');}).join('\n');
+    var blob=new Blob([csv],{type:'text/csv;charset=utf-8'});var url=URL.createObjectURL(blob);
+    var a=document.createElement('a');a.href=url;a.download=fname+'.csv';a.click();URL.revokeObjectURL(url);
+    showToast('Excel 库未加载，已导出 CSV','info');
+  }
+}
+function buildExamModals(){
+  var c=document.getElementById('modal-container');if(!c)return;
+  if(c.querySelector('#exam-wizard-modal'))return;
+  var typeRow=function(t,label){return '<div class="type-row"><span>'+label+'</span><input id="tc-'+t+'-count" type="number" min="0" value="6" class="input-field input-glass tc-num"> 题 <input id="tc-'+t+'-score" type="number" step="0.1" min="0.1" value="5" class="input-field input-glass tc-score"> 分</div>';};
+  var html=
+  '<div class="modal-backdrop" id="exam-wizard-modal"><div class="modal glass-modal large">'+
+    '<div class="modal-header"><h3 class="modal-title" id="wizard-title">创建考试</h3><button class="modal-close" onclick="closeModal(\'exam-wizard-modal\')">'+I.close+'</button></div>'+
+    '<div class="modal-body">'+
+      '<div class="input-group"><label class="input-label">考试名称</label><input id="wizard-name" class="input-field input-glass" placeholder="请输入考试名称"></div>'+
+      '<div class="flex gap-md"><div class="input-group" style="flex:1"><label class="input-label">考试时长（分钟）</label><input id="wizard-duration" type="number" min="1" value="45" class="input-field input-glass"></div>'+
+      '<div class="input-group" style="flex:1"><label class="input-label">截止时间</label><input id="wizard-deadline" class="input-field input-glass" placeholder="2026-07-20 18:00"></div></div>'+
+      '<div class="input-group"><label class="input-label">选择题库（可多选）</label><div id="wizard-banks" class="bank-list"></div></div>'+
+      '<div class="input-group"><label class="input-label">题型与分值设置（每题分值最低 0.1）</label><div class="type-config">'+typeRow('single','单选题')+typeRow('multi','多选题')+typeRow('judge','判断题')+'</div></div>'+
+    '</div>'+
+    '<div class="modal-footer"><button class="btn btn-glass" onclick="closeModal(\'exam-wizard-modal\')">取消</button><button class="btn btn-primary" onclick="saveExamWizard()">保存</button></div>'+
+  '</div></div>'+
+  '<div class="modal-backdrop" id="view-exam-modal"><div class="modal glass-modal">'+
+    '<div class="modal-header"><h3 class="modal-title" id="view-exam-title">考试详情</h3><button class="modal-close" onclick="closeModal(\'view-exam-modal\')">'+I.close+'</button></div>'+
+    '<div class="modal-body" id="view-exam-body"></div>'+
+    '<div class="modal-footer"><button class="btn btn-glass" onclick="closeModal(\'view-exam-modal\')">关闭</button></div>'+
+  '</div></div>'+
+  '<div class="modal-backdrop" id="exam-delete-modal"><div class="modal glass-modal" style="max-width:420px">'+
+    '<div class="modal-header"><h3 class="modal-title">删除考试</h3><button class="modal-close" onclick="closeModal(\'exam-delete-modal\')">'+I.close+'</button></div>'+
+    '<p class="text-secondary" style="font-size:var(--text-small);margin-bottom:var(--space-lg)">确定删除考试「<span id="exam-delete-name" style="color:var(--text-primary);font-weight:var(--font-semibold)"></span>」？此操作不可撤销。</p>'+
+    '<div class="modal-footer"><button class="btn btn-glass" onclick="closeModal(\'exam-delete-modal\')">取消</button><button class="btn btn-danger" onclick="doDeleteExam()">删除</button></div>'+
+  '</div></div>';
+  c.insertAdjacentHTML('beforeend',html);
+}
+function toggleRegister(){var p=document.getElementById('register-panel');if(p)p.style.display=p.style.display==='none'?'block':'none';}
+function submitRegister(e){e.preventDefault();
+  var acc=document.getElementById('reg-account').value.trim();
+  var name=document.getElementById('reg-name').value.trim();
+  var area=document.getElementById('reg-area').value.trim();
+  var pwd=document.getElementById('reg-password').value;
+  var cfm=document.getElementById('reg-confirm').value;
+  if(!acc||!pwd){showToast('请填写账号和密码','error');return;}
+  if(pwd.length<6){showToast('密码至少 6 位','error');return;}
+  if(pwd!==cfm){showToast('两次密码不一致','error');return;}
+  if(registeredUsers.some(function(x){return x.account===acc;})){showToast('该账号已注册','error');return;}
+  registeredUsers.push({account:acc,name:name||acc,area:area||'未分配工区',password:pwd,role:'user'});
+  showToast('注册成功，请登录','success');
+  ['reg-account','reg-name','reg-area','reg-password','reg-confirm'].forEach(function(id){document.getElementById(id).value='';});
+  toggleRegister();switchLoginTab('user');
+}
+
+document.addEventListener('DOMContentLoaded',function(){renderExamList('all');renderReview();buildAdminDashboard();buildQuestionBankPage();buildAdminAnalyticsPage();initAdminScope();buildPersonalAnalyticsPage();buildExamMgmtPage();buildUserMgmtPage();buildSettingsPage();buildModals();buildExamModals();setTimeout(animateCountUp,100)});
+</script>
+</body>
+</html>
